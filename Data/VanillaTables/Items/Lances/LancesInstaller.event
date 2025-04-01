@@ -1,0 +1,7 @@
+
+#include LANCE_BRONZE.lyn.event
+#include LANCE_IRON.lyn.event
+#include LANCE_JAVELIN.lyn.event
+#include LANCE_SILVER.lyn.event
+#include LANCE_SPEAR.lyn.event
+#include LANCE_STEEL.lyn.event

@@ -1,0 +1,130 @@
+
+////////////////////////////////////////////////////
+//                                                //
+// Disassembled with Nintenlord's Event Assembler //
+// Version: 11.0.0.0                              //
+// Game: FE8                                      //
+// File: FE8_clean.gba                            //
+// Offset: $9EC66C                                //
+//                                                //
+////////////////////////////////////////////////////
+
+EventPointerTable(0x7, PointerList)
+
+setText(0x160, NewChName)
+
+#define VillageClose 2
+#define VillageCoords [7,3]
+
+ALIGN 4
+NewChName:
+String("Chapter 1: Canyon Rush")
+BYTE 0
+
+ALIGN 4
+PointerList:
+POIN TurnBasedEvents
+POIN CharacterBasedEvents
+POIN LocationBasedEvents
+POIN MiscBasedEvents
+POIN Dunno1 Dunno2 Dunno3 Tutorial
+POIN Traps1 Traps2
+POIN AudreyWesley AudreyWesley  //This unit group determines the number and position of deployment slots when there is a prep screen
+POIN $0 $0 $0
+POIN $0 $0 $0
+POIN BeginningScene EndingScene
+
+TurnBasedEvents:
+END_MAIN
+
+LocationBasedEvents:
+END_MAIN
+
+MiscBasedEvents:
+CauseGameOverIfLordDies
+DefeatAll(EndingScene) //DEBUG ONLY, DELETE AFTERWARDS
+END_MAIN
+
+CharacterBasedEvents:
+END_MAIN
+
+Dunno1:
+END_MAIN
+
+Dunno2:
+END_MAIN
+
+Dunno3:
+END_MAIN
+
+Tutorial:
+END_MAIN
+
+Traps1:
+ENDTRAP
+ALIGN 4
+
+Traps2:
+ENDTRAP
+ALIGN 4
+
+//==================================================================//
+//==============================UNITS===============================//
+//==================================================================//
+
+AudreyWesley:
+UNIT CHARACTER_AUDREY CLASS_PRINCESS_F CHARACTER_AUDREY Level(1, Ally, False) [8,18] 0x0 0x0 0x1 REDA8R17 [ITEM_SWORD_BRONZE, ITEM_VULNERARY] NoAI
+UNIT CHARACTER_WESLEY CLASS_AXE_CAVALIER_M CHARACTER_AUDREY Level(3, Ally, False)  [9,18] 0x0 0x0 0x1 REDA9R17 [ITEM_AXE_BRONZE] NoAI
+UNIT
+
+EnemyUnits:
+// Lower Central Group
+UNIT 0x80 CLASS_FIGHTER_M CHARACTER_AUDREY Level(1, Enemy, True) [10,0] 0x0 0x0 0x1 REDA8R9 [ITEM_AXE_BRONZE] [0x0,0x00,NoRecovery,0x0]
+UNIT 0x80 CLASS_FIGHTER_M CHARACTER_AUDREY Level(1, Enemy, True) [11,0] 0x0 0x0 0x1 REDA9R9 [ITEM_AXE_BRONZE] [0x0,0x00,NoRecovery,0x0]
+// Wall Breakers
+UNIT 0x80 CLASS_SWORDFIGHTER_M CHARACTER_AUDREY Level(1, Enemy, True) [17,11] 0x0 0x0 0x1 REDA15R13 [ITEM_SWORD_BRONZE] [0x0,0xE,0xC,0x0]
+UNIT 0x80 CLASS_SWORDFIGHTER_M CHARACTER_AUDREY Level(1, Enemy, True) [16,14] 0x0 0x0 0x0 0x0 [ITEM_SWORD_BRONZE] [0x0,0xE,0xC,0x0]
+UNIT 0x80 CLASS_FIGHTER_M CHARACTER_AUDREY Level(1, Enemy, True) [0,10] 0x0 0x0 0x1 REDA3R12 [ITEM_AXE_BRONZE] [0x0,0xE,0xC,0x0]
+UNIT 0x80 CLASS_OUTLAW_M CHARACTER_AUDREY Level(1, Enemy, True) [0,11] 0x0 0x0 0x1 REDA3R11 [ITEM_BOW_BRONZE] [0x0,0xE,0xC,0x0]
+// Middle Central Group
+UNIT 0x80 CLASS_FIGHTER_M CHARACTER_AUDREY Level(1, Enemy, True) [10,0] 0x0 0x0 0x1 REDA9R4 [ITEM_AXE_BRONZE] AttackInRangeAI
+UNIT 0x80 CLASS_FIGHTER_M CHARACTER_AUDREY Level(1, Enemy, True) [11,0] 0x0 0x0 0x1 REDA10R5 [ITEM_AXE_BRONZE] AttackInRangeAI
+// Upper Central Group
+UNIT 0x80 CLASS_SWORDFIGHTER_M CHARACTER_AUDREY Level(1, Enemy, True) [10,0] 0x0 0x0 0x1 REDA11R3 [ITEM_SWORD_BRONZE] AttackInRangeAI
+UNIT 0x80 CLASS_SWORDFIGHTER_M CHARACTER_AUDREY Level(1, Enemy, True) [11,0] 0x0 0x0 0x1 REDA10R2 [ITEM_SWORD_BRONZE] AttackInRangeAI
+// Bottom Right Group
+UNIT 0x80 CLASS_SWORDFIGHTER_M CHARACTER_AUDREY Level(1, Enemy, True) [18,11] 0x0 0x0 0x1 REDA16R12 [ITEM_SWORD_BRONZE] AttackInRangeAI
+UNIT 0x80 CLASS_OUTLAW_M CHARACTER_AUDREY Level(1, Enemy, True) [18,10] 0x0 0x0 0x1 REDA17R12 [ITEM_BOW_BRONZE] AttackInRangeAI
+// Upper Right Group
+UNIT 0x80 CLASS_OUTLAW_M CHARACTER_AUDREY Level(1, Enemy, True) [18,11] 0x0 0x0 0x1 REDA16R7 [ITEM_BOW_BRONZE] AttackInRangeAI
+UNIT 0x80 CLASS_FIGHTER_M CHARACTER_AUDREY Level(1, Enemy, True) [18,10] 0x0 0x0 0x1 REDA16R8 [ITEM_AXE_BRONZE] AttackInRangeAI
+// Bottom Left Group
+UNIT 0x80 CLASS_FIGHTER_M CHARACTER_AUDREY Level(1, Enemy, True) [0,10] 0x0 0x0 0x1 REDA1R11 [ITEM_AXE_BRONZE] AttackInRangeAI
+UNIT 0x80 CLASS_FIGHTER_M CHARACTER_AUDREY Level(1, Enemy, True) [0,11] 0x0 0x0 0x1 REDA2R10 [ITEM_AXE_BRONZE] AttackInRangeAI 
+// Upper Left Group
+UNIT 0x80 CLASS_OUTLAW_M CHARACTER_AUDREY Level(1, Enemy, True) [0,11] 0x0 0x0 0x1 REDA1R9 [ITEM_BOW_BRONZE] AttackInRangeAI
+UNIT
+
+
+//==================================================================//
+//=============================EVENTS===============================//
+//==================================================================//
+
+
+BeginningScene:
+LOAD1 0x0 AudreyWesley
+ENUN
+LOAD1 0x0 EnemyUnits
+ENUN
+SetBackground(Outside_Village_Day)
+Text(Chapter1InitialConvo1)
+EndConvo
+ENDA
+
+EndingScene:
+ASMC 0x85C71 0x381F5 0x37CF9 //show records screen
+STAL 120
+EVBIT_F 0x2
+MNTS 0x1 //return to title screen
+NoFade
+ENDA

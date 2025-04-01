@@ -1,0 +1,5 @@
+PUSH
+    ORG $803D64
+    #include "Audrey.lyn.event"
+    #include "Wesley.lyn.event"
+POP

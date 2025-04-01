@@ -1,0 +1,35 @@
+#include "Source/LynJump.event"
+#include "Source/PhaseSuspend.lyn.event"
+
+PUSH
+	/**
+	 * Overwrite PlaySt::disableTerrainDisplay
+	 */
+	ORG 0x8D088
+	SHORT 0x00
+
+	ORG TextTable + MSG_0091 * 4
+	WORD 0x88000000 | msg_uiconfig_name_suspend
+
+	ORG TextTable + MSG_00AB * 4
+	WORD 0x88000000 | msg_uiconfig_desc_suspend
+
+	/**
+	 * Fake FEB patch: autosave
+	 */
+	ORG 0x154F4
+		SHORT 0x4B02 // ldr r3, [PC + 8]
+		SHORT 0x4718 // bx r3
+		SHORT 0x4B01 0x469E 0xF800 0xE001
+		POIN Hook_BmMain_SuspendBeforePhase
+    PROTECT 0x000154F4 0x0001550C // BmMain_SuspendBeforePhase
+
+	/**
+	 * Fake FEB patch: Auto save function(with SkillSystems/EMS)
+	 */
+	ORG 0x15510
+		SHORT 0xE00C // b 0x0801553C
+	ORG 0x1553C
+		WORD 0x0203A958
+	PROTECT 0x0001550C 0x00015544 // BmMain_StartIntroFx
+POP

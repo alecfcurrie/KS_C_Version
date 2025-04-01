@@ -1,0 +1,11 @@
+#include "Source/LynJump.event"
+#include "Source/ConvoyExpa.lyn.event"
+
+PUSH
+    ORG $31500
+    jumpToHack(__GetConvoyItemArray)
+POP
+
+ALIGN 4
+sExpaConvoyItemAmount:
+    WORD CONFIG_INSTALL_CONVOYEXPA_AMT

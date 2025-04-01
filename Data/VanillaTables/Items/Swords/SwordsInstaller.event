@@ -1,0 +1,5 @@
+
+#include SWORD_BRONZE.lyn.event
+#include SWORD_IRON.lyn.event
+#include SWORD_SILVER.lyn.event
+#include SWORD_STEEL.lyn.event

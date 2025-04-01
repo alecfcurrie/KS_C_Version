@@ -1,0 +1,34 @@
+#ifndef ITEM_SYS_INSTALLED
+#define ITEM_SYS_INSTALLED
+
+#include "Source/LynJump.event"
+#include "Source/StaffAccuracy.lyn.event"
+#include "Source/StaffHeal.lyn.event"
+#include "Source/ItemUse.lyn.event"
+
+#include "ItemInfoRemap/ItemInfoRemap.event"
+
+/* int (*)(int old, struct Unit *actor, struct Unit *target); */
+ALIGN 4
+gHealAmountGetters:
+    POIN HealAmount_SkillsGetter
+    POIN KernelPad2 KernelPad2 KernelPad2 KernelPad2
+    WORD 0
+
+#include "PrepItem/LynJump.event"
+#include "PrepItem/PrepItemUsability.lyn.event"
+#include "PrepItem/PrepItemEffect.lyn.event"
+#include "PrepItem/PrepItemUseScreen.lyn.event"
+
+PUSH
+    ORG $A190D4
+    PROC_YEILD
+
+    ORG 0x02FC62
+    BL(AutoGetItemUseActionItem)
+    PROTECT 0x0002FC48 0x0002FFB4 // ActionStaffDoorChestUseItem
+POP
+
+// #include "data.event"
+
+#endif
