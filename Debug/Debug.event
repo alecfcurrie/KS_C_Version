@@ -13,6 +13,9 @@ WARNING
 
 #include "RemoveWM/RemoveWM.event"
 #include "ChapterEvents/REDAs.event"
+#include "GameIntro/GameIntro.event"
+#include "ChapterIntro/ChapterIntro.event"
+
 {
     #include "ChapterEvents/Chapter1.event"
 }
