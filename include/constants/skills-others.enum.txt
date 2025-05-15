@@ -73,8 +73,8 @@ SID_Discipline
 SID_AdvantageChaser
 SID_Nonconforming
 SID_Moonlight
-SID_BlackMagic
-SID_LastWord
+// SID_BlackMagic
+// SID_LastWord
 SID_Multiscale
 SID_PridefulWarrior
 SID_MageSlayer
@@ -111,7 +111,7 @@ SID_LadyBlade
 // SID_LullSpeed
 // SID_LullStregth
 SID_ShrewdPotential
-SID_SteadyBrawler
+// SID_SteadyBrawler
 SID_KeepUp
 // SID_LiquidOoze
 SID_CloseCombat
@@ -121,7 +121,7 @@ SID_Barricade
 SID_BarricadePlus
 SID_LunarBrace
 SID_Pursuer
-SID_QuickLearner
+// SID_QuickLearner
 SID_EffectSpore
 SID_DominantArm
 SID_SolidRock
@@ -197,24 +197,24 @@ SID_SwiftSwim
 SID_SolarPower
 
 // Seal skills
-// SID_SealDefense
-// SID_SealLuck
-// SID_SealMagic
-// SID_SealResistance
-// SID_SealSkill
-// SID_SealSpeed
-// SID_SealStrength
+SID_SealDefense
+SID_SealLuck
+SID_SealMagic
+SID_SealResistance
+SID_SealSkill
+SID_SealSpeed
+SID_SealStrength
 
 // Initiative skills
-SID_InitStrong
-SID_InitClever
-SID_InitDeft
-SID_InitQuick
-SID_InitSturdy
-SID_InitCalm
-SID_InitLucky
-SID_InitNimble
-SID_InitSpectrum
+// SID_InitStrong
+// SID_InitClever
+// SID_InitDeft
+// SID_InitQuick
+// SID_InitSturdy
+// SID_InitCalm
+// SID_InitLucky
+// SID_InitNimble
+// SID_InitSpectrum
 
 // Oath skills
 SID_OathDefense
@@ -298,3 +298,7 @@ SID_COMBAT_Detonate
 SID_COMBAT_BloodTribute
 SID_COMBAT_CrimsonStrike
 SID_COMBAT_VitalReckoning
+
+// Personal skills
+SID_BornLeader
+SID_VerdantPoise

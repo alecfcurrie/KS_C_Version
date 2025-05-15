@@ -1,0 +1,15 @@
+PUSH
+    ORG $803D64
+    #include "PlayerCharacterData/Audrey.lyn.event"
+    #include "PlayerCharacterData/Wesley.lyn.event"
+    #include "PlayerCharacterData/Osborne.lyn.event"
+    #include "PlayerCharacterData/Elaine.lyn.event"
+    #include "PlayerCharacterData/Cordell.lyn.event"
+    #include "PlayerCharacterData/Surge.lyn.event"
+    #include "PlayerCharacterData/Osma.lyn.event"
+    #include "PlayerCharacterData/Jyri.lyn.event"
+    #include "PlayerCharacterData/Liev.lyn.event"
+    ORG $804A30
+    #include "EnemyCharacterData/Glove.lyn.event"
+    #include "EnemyCharacterData/Fester.lyn.event"
+POP

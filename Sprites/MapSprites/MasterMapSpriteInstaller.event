@@ -1,0 +1,3 @@
+#include "Internals.event"
+#include "MapSpriteData.event"
+#include "MapSpriteTable.event"

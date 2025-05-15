@@ -1,0 +1,58 @@
+## MSG_SWORD_BRONZE
+Bronze Sword[X]
+
+## MSG_DESC_STANDARD
+ [X]
+
+## MSG_DESC_BRONZE
+Cannot critical.[X]
+
+## MSG_LANCE_BRONZE
+Bronze Lance[X]
+
+## MSG_AXE_BRONZE
+Bronze Axe[X]
+
+## MSG_BOW_BRONZE
+Bronze Bow[X]
+
+## MSG_DAGGER_BRONZE
+Bronze Dagger[X]
+
+## MSG_DESC_DAGGER_BRONZE
+Cannot critical. Inflicts[N]
+Mag-2, Skl-2, Def-3, Res-3.[X]
+
+## MSG_DAGGER_IRON
+Iron Dagger[X]
+
+## MSG_DESC_DAGGER_IRON
+Inflicts Mag-2, Def-3, Res-3.[X]
+
+## MSG_DAGGER_STEEL
+Steel Dagger[X]
+
+## MSG_DESC_DAGGER_STEEL
+Inflicts Str-3, Def-4, Res-4.[X]
+
+## MSG_DAGGER_SILVER
+Silver Dagger[X]
+
+## MSG_DESC_DAGGER_SILVER
+Inflicts Str-4, Def-4, Res-4.[X]
+
+## MSG_DAGGER_HUNTER
+Hunter's Knife[X]
+
+## MSG_DESC_DAGGER_HUNTER
+Eff. versus cavalry. Inflicts,[N]
+Lck-3, Def-3, Res-3.[X]
+
+## MSG_DESC_ONE_TWO_RANGE
+Cannot critical.[X]
+
+## MSG_DESC_LIGHTNING
+Priest/Bishop only. Cannot critical.[X]
+
+## MSG_DESC_LIGHT
+Priest/Bishop only. Eff. vs. monsters.[X]

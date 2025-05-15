@@ -4,6 +4,7 @@
 #include "weapon-range.h"
 #include "kernel-lib.h"
 #include "gaiden-magic.h"
+#include "KSDefinitions.h"
 
 LYN_REPLACE_CHECK(AiReachesByBirdsEyeDistance);
 bool AiReachesByBirdsEyeDistance(struct Unit *unit, struct Unit *other, u16 item)

@@ -691,8 +691,8 @@ const struct SkillExtraInfo gSkillExtraInfo[MAX_SKILL_NUM + 1] = {
 	[SID_Demoiselle] = {{ 2 }},
 #endif
 
-#if (defined(SID_LilysPoise) && COMMON_SKILL_VALID(SID_LilysPoise))
-	[SID_LilysPoise] = {{ 1, 3 }},
+#if (defined(SID_VerdantPoise) && COMMON_SKILL_VALID(SID_VerdantPoise))
+	[SID_VerdantPoise] = {{ 1, 3 }},
 #endif
 
 #if (defined(SID_Daunt) && COMMON_SKILL_VALID(SID_Daunt))
@@ -1147,15 +1147,7 @@ const struct SkillExtraInfo gSkillExtraInfo[MAX_SKILL_NUM + 1] = {
 	[SID_EndlessVitality] = {{ 20 }},
 #endif
 
-#if (defined(SID_SteadyBrawler) && COMMON_SKILL_VALID(SID_SteadyBrawler))
-	[SID_SteadyBrawler] = {{ 25, 25 }},
-#endif
-
-#if (defined(SID_Resourceful) && COMMON_SKILL_VALID(SID_Resourceful))
-	[SID_Resourceful] = {{ 100 }},
-#endif
-
-#if (defined(SID_SolidRock) && COMMON_SKILL_VALID(SID_SolidRock))
-	[SID_SolidRock] = {{ 100 }},
+#if (defined(SID_BornLeader) && COMMON_SKILL_VALID(SID_BornLeader))
+	[SID_BornLeader] = {{ 10 , 2 }}
 #endif
 };

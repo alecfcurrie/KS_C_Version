@@ -4,6 +4,7 @@
 #include <gaiden-magic.h>
 #include <stat-screen.h>
 #include <shield.h>
+#include "KSDefinitions.h"
 
 #define LOCAL_TRACE 0
 
@@ -179,9 +180,11 @@ NOINLINE STATIC_DECLAR void DrawItemEquipLine(int slot)
 
 NOINLINE STATIC_DECLAR void DrawItemPageSubfix(int slot)
 {
-	int i, weapon;
-	const char *str;
-	struct Unit *unit = gStatScreen.unit;
+	// TODO Clean up comments
+	// int i, weapon;
+	// const char *str;
+	int i;
+	// struct Unit *unit = gStatScreen.unit;
 
 	Decompress(gpTSA_ItemPageSubfix, gGenericBuffer);
 	CallARM_FillTileRect(
@@ -190,7 +193,7 @@ NOINLINE STATIC_DECLAR void DrawItemPageSubfix(int slot)
 
 	DisplayTexts(gpPage1TextInfo);
 
-	weapon = GetItemFromSlot(unit, slot);
+	// weapon = GetItemFromSlot(unit, slot);
 
 	PutNumberOrBlank(
 		gUiTmScratchA + TILEMAP_INDEX(8,  13),
@@ -208,11 +211,9 @@ NOINLINE STATIC_DECLAR void DrawItemPageSubfix(int slot)
 		gUiTmScratchA + TILEMAP_INDEX(15, 15),
 		TEXT_COLOR_SYSTEM_BLUE, gBattleActor.battleAvoidRate);
 
-	str = GetItemDisplayRangeString(weapon);
-	Text_InsertDrawString(
-		&gStatScreen.text[STATSCREEN_TEXT_BSRANGE],
-		55 - GetStringTextLen(str),
-		TEXT_COLOR_SYSTEM_BLUE, str);
+	PutNumberOrBlank(
+		gUiTmScratchA + TILEMAP_INDEX(15, 11),
+		TEXT_COLOR_SYSTEM_BLUE, gBattleActor.battleSpeed);
 
 	for (i = 0; i < 8; ++i) {
 		gUiTmScratchA[TILEMAP_INDEX(1 + i, 11)] = TILEREF(0x60 + i, STATSCREEN_BGPAL_7);

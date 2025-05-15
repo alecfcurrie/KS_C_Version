@@ -1,0 +1,20 @@
+ALIGN 4
+#include "BattleAnims/AnimationTableInstaller.event"
+
+ALIGN 4
+#include "Tilesets/TilesetInstaller.event"
+
+ALIGN 4
+#include "Maps/MasterMapInstaller.event"
+
+ALIGN 4
+#include "Portraits/MasterPortraitInstaller.event"
+
+ALIGN 4
+#include "ItemIcons/MasterItemIconInstaller.event"
+
+ALIGN 4
+#include "MapSprites/MasterMapSpriteInstaller.event"
+
+ALIGN 4
+#include "ClassCards/MasterClassCardInstaller.event"

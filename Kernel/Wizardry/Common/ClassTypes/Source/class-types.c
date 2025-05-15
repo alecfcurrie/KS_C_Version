@@ -1,5 +1,6 @@
 #include "common-chax.h"
 #include "class-types.h"
+#include "KSDefinitions.h"
 
 typedef bool (*ClassTypeFunc_t)(u8 jid);
 

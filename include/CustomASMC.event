@@ -1,0 +1,1 @@
+#define EvtBuffWeapons(OldID, NewID) "SVAL 1 OldID; SVAL 2 NewID; ASMC BuffWeaponsASMC"

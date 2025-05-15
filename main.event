@@ -6,6 +6,7 @@
 #include "include/kernel/CustomDefinitions.event"
 #include "include/kernel/macros.event"
 #include "include/kernel/Definitions.event"
+#include "include/Definitions.event"
 
 /**
  * --------------------------------------------------
@@ -55,4 +56,5 @@ ASSERT (FreeSpaceFont + FreeSpaceFontSize - CURRENTOFFSET)
  * --------------------------------------------------
  */
 ORG FreeSpaceDEMO
+#include "Sprites/SpriteInstaller.event"
 // Free

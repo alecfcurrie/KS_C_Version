@@ -1,5 +1,6 @@
 #include "common-chax.h"
 #include "weapon-range.h"
+#include "KSDefinitions.h"
 
 LYN_REPLACE_CHECK(MakeTargetListForAdjacentHeal);
 void MakeTargetListForAdjacentHeal(struct Unit *unit)

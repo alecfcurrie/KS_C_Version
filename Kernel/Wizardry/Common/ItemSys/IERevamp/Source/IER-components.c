@@ -249,7 +249,8 @@ void IER_Action_NightMare(ProcPtr proc, struct Unit *unit, int item)
 {
 	// ExecNightmare(proc);
 	{
-		BattleInitItemEffect(GetUnit(gActionData.subjectIndex), gActionData.itemSlotIndex);
+		BattleInitItemEffect(GetUnit(gActionData.subjectIndex),
+				     gActionData.itemSlotIndex);
 		BattleInitItemEffectTarget(GetUnit(gActionData.targetIndex));
 		BattleApplyItemEffect(proc);
 
@@ -311,7 +312,7 @@ void IER_Action_TorchItem(ProcPtr proc, struct Unit *unit, int item)
 void IER_Action_VulneraryItem(ProcPtr proc, struct Unit *unit, int item)
 {
 	int amount;
-	
+
 	amount = GetUnitItemHealAmount(unit, item);
 	amount = HealAmountGetter(amount, NULL, unit);
 
@@ -335,13 +336,14 @@ void IER_Action_AntitoxinItem(ProcPtr proc, struct Unit *unit, int item)
 
 void IER_Action_KeyItem(ProcPtr proc, struct Unit *unit, int item)
 {
-	ExecKeyItem(proc);
+	ExecKeyItem();
 }
 
 void IER_Action_Promotion(ProcPtr proc, struct Unit *unit, int item)
 {
 	gBattleActor.weaponBefore = gBattleTarget.weaponBefore = item;
-	gBattleActor.weapon = gBattleTarget.weapon = GetUnitEquippedWeapon(unit);
+	gBattleActor.weapon = gBattleTarget.weapon =
+		GetUnitEquippedWeapon(unit);
 	gBattleTarget.statusOut = -1;
 
 	StartBmPromotion(proc);

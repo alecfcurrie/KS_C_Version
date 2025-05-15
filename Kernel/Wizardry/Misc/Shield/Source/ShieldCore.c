@@ -3,6 +3,7 @@
 #include <list-verify.h>
 #include <skill-system.h>
 #include <stat-screen.h>
+#include "KSDefinitions.h"
 
 #include <shield.h>
 
@@ -173,7 +174,7 @@ void BattleHit_ConsumeShield(struct BattleUnit *attacker, struct BattleUnit *def
 	sinfo = GetBattleUnitShield(defender);
 	if (sinfo && sinfo->iid != ITEM_NONE && sinfo->consume_on_defense)
 		if (!sinfo->consume_on_hitted || !(gBattleHitIterator->attributes & BATTLE_HIT_ATTR_MISS))
-			consume_unit_item(&defender->unit, sinfo->iid);
+			consume_unit_item(&attacker->unit, sinfo->iid);
 }
 
 /**

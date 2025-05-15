@@ -1,0 +1,17 @@
+## MSG_CLASS_LANCE_CAV_NAME
+Lance Cavalier[X]
+
+## MSG_CLASS_AXE_CAV_NAME
+Axe Cavalier[X]
+
+## MSG_CLASS_SWORDFIGHTER_NAME
+Swordfighter[X]
+
+## MSG_CLASS_OUTLAW_NAME
+Outlaw[X]
+
+## MSG_CLASS_ADVENTURER_NAME
+Adventurer[X]
+
+## MSG_CLASS_NINJA_NAME
+Ninja[X]

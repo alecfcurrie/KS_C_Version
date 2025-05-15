@@ -5,6 +5,7 @@
 #include <bwl.h>
 #include <list-verify.h>
 #include <gaiden-magic.h>
+#include "KSDefinitions.h"
 
 struct GaidenMagicList *const gGaidenMagicList = &sGaidenMagicListObj;
 

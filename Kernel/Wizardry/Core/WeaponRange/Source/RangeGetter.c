@@ -5,6 +5,7 @@
 #include "kernel-lib.h"
 #include "gaiden-magic.h"
 #include "constants/skills.h"
+#include "KSDefinitions.h"
 
 #define LOCAL_TRACE 0
 

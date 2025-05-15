@@ -1,6 +1,7 @@
 #include "common-chax.h"
 #include "kernel-lib.h"
 #include "battle-system.h"
+#include "KSDefinitions.h"
 
 int GetDefenderNegatedDefense(struct BattleUnit *attacker, struct BattleUnit *defender)
 {

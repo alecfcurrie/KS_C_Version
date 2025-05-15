@@ -1,0 +1,9 @@
+## MSG_SKILL_BornLeader
+BORN LEADER[NL]
+Grants +10 Hit and +2 damage to[NL]
+allies within two spaces.[X]
+
+## MSG_SKILL_VerdantPoise
+VERDANT POISE: [NL]
+Adjacent allies deal +1 damage [NL]
+and receive -3 damage.[X]

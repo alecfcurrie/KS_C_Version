@@ -21,30 +21,34 @@ struct ProcEfxSkillRework {
 
 STATIC_DECLAR void EfxSkillOnInit(struct ProcEfxSkillRework *proc)
 {
-	NewEfxSkillBox(proc->anim, 0,
-		GetIconGfx(SKILL_ICON(proc->sid)), proc->sid, EFX_SKILL_BOX_SKILL);
+	NewEfxSkillBox(proc->anim, 0, GetIconGfx(SKILL_ICON(proc->sid)),
+		       proc->sid, EFX_SKILL_BOX_SKILL);
 }
 
 STATIC_DECLAR void EfxCombatArtOnInit(struct ProcEfxSkillRework *proc)
 {
-	NewEfxSkillBox(proc->anim, 0,
-		GetCombatArtIcon(proc->sid), proc->sid, EFX_SKILL_BOX_COMBATART);
+	NewEfxSkillBox(proc->anim, 0, GetCombatArtIcon(proc->sid), proc->sid,
+		       EFX_SKILL_BOX_COMBATART);
 }
 
 STATIC_DECLAR void EfxSkillMain(struct ProcEfxSkillRework *proc)
 {
-	int ret = EfxAdvanceFrameLut((void *)&proc->timer, (void *)&proc->frame, proc->frames);
+	int ret = EfxAdvanceFrameLut((void *)&proc->timer, (void *)&proc->frame,
+				     proc->frames);
 
 	if (ret >= 0) {
 		int i;
 
-		SpellFx_WriteBgMap(proc->anim, proc->tsas[ret], proc->tsas[ret]);
+		SpellFx_WriteBgMap(proc->anim, proc->tsas[ret],
+				   proc->tsas[ret]);
 		SpellFx_RegisterBgGfx(proc->imgs[ret], 0x2000);
 		SpellFx_RegisterBgPal(proc->pals[ret], 0x20);
 
 		for (i = 0; i < 0x14; i++) {
-			gBG1TilemapBuffer[0x20 * i + 0x1E] = gBG1TilemapBuffer[0];
-			gBG1TilemapBuffer[0x20 * i + 0x1F] = gBG1TilemapBuffer[0];
+			gBG1TilemapBuffer[0x20 * i + 0x1E] =
+				gBG1TilemapBuffer[0];
+			gBG1TilemapBuffer[0x20 * i + 0x1F] =
+				gBG1TilemapBuffer[0];
 		}
 
 		SpellFx_SetSomeColorEffect();
@@ -61,25 +65,17 @@ STATIC_DECLAR void EfxSkillOnEnd(struct ProcEfxSkillRework *proc)
 }
 
 STATIC_DECLAR const struct ProcCmd ProcScr_EfxSkill[] = {
-	PROC_NAME("EfxSkill"),
-	PROC_YIELD,
-	PROC_CALL(EfxSkillOnInit),
-	PROC_REPEAT(EfxSkillMain),
-	PROC_CALL(EfxSkillOnEnd),
-	PROC_SLEEP(0x10),
-	PROC_WHILE(EfxSkillBoxExists),
-	PROC_END
+	PROC_NAME("EfxSkill"),	       PROC_YIELD,
+	PROC_CALL(EfxSkillOnInit),     PROC_REPEAT(EfxSkillMain),
+	PROC_CALL(EfxSkillOnEnd),      PROC_SLEEP(0x10),
+	PROC_WHILE(EfxSkillBoxExists), PROC_END
 };
 
 STATIC_DECLAR const struct ProcCmd ProcScr_EfxCombatArt[] = {
-	PROC_NAME("EfxCombatArt"),
-	PROC_YIELD,
-	PROC_CALL(EfxCombatArtOnInit),
-	PROC_REPEAT(EfxSkillMain),
-	PROC_CALL(EfxSkillOnEnd),
-	PROC_SLEEP(0x10),
-	PROC_WHILE(EfxSkillBoxExists),
-	PROC_END
+	PROC_NAME("EfxCombatArt"),     PROC_YIELD,
+	PROC_CALL(EfxCombatArtOnInit), PROC_REPEAT(EfxSkillMain),
+	PROC_CALL(EfxSkillOnEnd),      PROC_SLEEP(0x10),
+	PROC_WHILE(EfxSkillBoxExists), PROC_END
 };
 
 void NewEfxSkill(struct Anim *anim, int sid)
@@ -154,5 +150,6 @@ void NewEfxCombatArt(struct Anim *anim, int cid)
 
 bool EfxSkillExists(void)
 {
-	return !!Proc_Find(ProcScr_EfxSkill) || !!Proc_Find(ProcScr_EfxCombatArt);
+	return !!Proc_Find(ProcScr_EfxSkill) ||
+	       !!Proc_Find(ProcScr_EfxCombatArt);
 }

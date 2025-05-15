@@ -4,6 +4,7 @@
 #include "combat-art.h"
 #include "class-types.h"
 #include "constants/skills.h"
+#include "KSDefinitions.h"
 
 STATIC_DECLAR bool CheckBeastNullEffective(struct Unit *unit)
 {
@@ -73,7 +74,8 @@ check_null_effective:
 	return true;
 }
 
-STATIC_DECLAR bool IsBattleUnitEffectiveAgainst(struct BattleUnit *actor, struct BattleUnit *target)
+STATIC_DECLAR bool IsBattleUnitEffectiveAgainst(struct BattleUnit *actor,
+						struct BattleUnit *target)
 {
 	int jid_target = UNIT_CLASS_ID(&target->unit);
 
@@ -99,7 +101,8 @@ STATIC_DECLAR bool IsBattleUnitEffectiveAgainst(struct BattleUnit *actor, struct
 				break;
 
 			case COMBART_EFF_FLIER:
-				if (CheckClassFlier(jid_target) && !CheckFlierNullEffective(&target->unit))
+				if (CheckClassFlier(jid_target) &&
+				    !CheckFlierNullEffective(&target->unit))
 					return true;
 
 				break;
@@ -111,7 +114,8 @@ STATIC_DECLAR bool IsBattleUnitEffectiveAgainst(struct BattleUnit *actor, struct
 				break;
 
 			case COMBART_EFF_MONSTER:
-				if (CheckClassBeast(jid_target) && !CheckBeastNullEffective(&target->unit))
+				if (CheckClassBeast(jid_target) &&
+				    !CheckBeastNullEffective(&target->unit))
 					return true;
 
 				break;
@@ -125,7 +129,8 @@ STATIC_DECLAR bool IsBattleUnitEffectiveAgainst(struct BattleUnit *actor, struct
 
 #if (defined(SID_DoOrDie) && (COMMON_SKILL_VALID(SID_DoOrDie)))
 	if (BattleFastSkillTester(actor, SID_DoOrDie)) {
-		if ((target->battleAttack - actor->battleDefense) >= actor->hpInitial)
+		if ((target->battleAttack - actor->battleDefense) >=
+		    actor->hpInitial)
 			return true;
 	}
 #endif
@@ -139,21 +144,24 @@ bool IsUnitEffectiveAgainst(struct Unit *actor, struct Unit *target)
 	FORCE_DECLARE int jid_target = UNIT_CLASS_ID(target);
 
 	if (IS_BATTLE_UNIT(actor) && IS_BATTLE_UNIT(target)) {
-		if (IsBattleUnitEffectiveAgainst((struct BattleUnit *)actor, (struct BattleUnit *)target))
+		if (IsBattleUnitEffectiveAgainst((struct BattleUnit *)actor,
+						 (struct BattleUnit *)target))
 			goto check_null_effective;
 	}
 
 	/* Check skills */
 #if (defined(SID_Slayer) && (COMMON_SKILL_VALID(SID_Slayer)))
 	if (SkillListTester(actor, SID_Slayer)) {
-		if (CheckClassBeast(jid_target) && !CheckBeastNullEffective(target))
+		if (CheckClassBeast(jid_target) &&
+		    !CheckBeastNullEffective(target))
 			goto check_null_effective;
 	}
 #endif
 
 #if (defined(SID_Skybreaker) && (COMMON_SKILL_VALID(SID_Skybreaker)))
 	if (SkillListTester(actor, SID_Skybreaker)) {
-		if (CheckClassFlier(jid_target) && !CheckFlierNullEffective(target))
+		if (CheckClassFlier(jid_target) &&
+		    !CheckFlierNullEffective(target))
 			goto check_null_effective;
 	}
 #endif

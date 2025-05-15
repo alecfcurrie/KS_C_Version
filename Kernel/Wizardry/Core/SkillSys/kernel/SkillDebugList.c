@@ -8,7 +8,8 @@ void ResetSkillDbgList(void)
 	memset(gSkillDbgList, 0, sizeof(gSkillDbgList));
 }
 
-STATIC_DECLAR struct SkillDbgListEnt *FindSkillDbgListChunk(struct Unit *unit, int sid)
+STATIC_DECLAR struct SkillDbgListEnt *FindSkillDbgListChunk(struct Unit *unit,
+							    int sid)
 {
 	int i;
 	int pid = UNIT_CHAR_ID(unit);
@@ -56,7 +57,8 @@ void AddSkillDbgList(struct Unit *unit, int sid)
 	it->sid = sid;
 
 	ResetSkillLists();
-	LTRACEF("Add chunk %d: pid=0x%02X, sid=0x%04X", it - gSkillDbgList, pid, sid);
+	LTRACEF("Add chunk %d: pid=0x%02X, sid=0x%04X", it - gSkillDbgList, pid,
+		sid);
 }
 
 void AddSkillDbgListByPid(int pid, int sid)
@@ -72,7 +74,8 @@ void RemoveSkillDbgList(struct Unit *unit, int sid)
 	struct SkillDbgListEnt *it = FindSkillDbgListChunk(unit, sid);
 
 	if (it == NULL) {
-		Errorf("No such chunk: pid=0x%02X, sid=0x%04X", UNIT_CHAR_ID(unit), sid);
+		Errorf("No such chunk: pid=0x%02X, sid=0x%04X",
+		       UNIT_CHAR_ID(unit), sid);
 		return;
 	}
 
@@ -111,7 +114,8 @@ void EMS_LoadSkillDbgList(u8 *src, const u32 size)
 	ReadSramFast(src, gSkillDbgList, sizeof(gSkillDbgList));
 }
 
-void AppendSkillListViaDebugList(struct Unit *unit, struct SkillList *list, u8 *ref)
+void AppendSkillListViaDebugList(struct Unit *unit, struct SkillList *list,
+				 u8 *ref)
 {
 	int i;
 	int pid = UNIT_CHAR_ID(unit);
@@ -119,7 +123,8 @@ void AppendSkillListViaDebugList(struct Unit *unit, struct SkillList *list, u8 *
 	for (i = 0; i < SKILL_DBG_LIST_LEN; i++) {
 		struct SkillDbgListEnt *it = gSkillDbgList + i;
 
-		LTRACEF("chunk=%d, pid=0x%02X, sid=0x%04X", i, it->pid, it->sid);
+		LTRACEF("chunk=%d, pid=0x%02X, sid=0x%04X", i, it->pid,
+			it->sid);
 
 		if (it->pid != pid)
 			continue;

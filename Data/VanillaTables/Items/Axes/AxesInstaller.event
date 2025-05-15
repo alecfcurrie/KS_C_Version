@@ -1,0 +1,7 @@
+
+#include AXE_BRONZE.lyn.event
+#include AXE_HANDAXE.lyn.event
+#include AXE_IRON.lyn.event
+#include AXE_SILVER.lyn.event
+#include AXE_STEEL.lyn.event
+#include AXE_TOMAHAWK.lyn.event

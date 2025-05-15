@@ -20,6 +20,9 @@ void UnitLoadStatsFromChracterVanilla(struct Unit *unit, const struct CharacterD
 	unit->res   = character->baseRes + unit->pClassData->baseRes;
 	unit->lck   = character->baseLck;
 
+	if (UNIT_FACTION(unit) == FACTION_RED) 
+		unit->lck += unit->pClassData->classRelativePower;
+
 	unit->conBonus = 0;
 
 	for (i = 0; i < 8; ++i) {

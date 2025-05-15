@@ -16,7 +16,9 @@ gPostActionFuncs:
     POIN PostActionRemoveChillDebuff
     POIN PostAction_Glorifier
     POIN PostActionSkillShakedown
+    #ifdef CONFIG_USE_COMBO_ATTACK
     POIN ResetComboAtkList
+    #endif
 
     //End
     POIN CallExternalPostActionHook

@@ -1,0 +1,33 @@
+## MSG_CLASS_LANCE_CAV_DESC
+Mounted soldiers that use lances to[NL]
+cut through the battlefield. Their[NL]
+stats are balanced.[X]
+
+## MSG_CLASS_AXE_CAV_DESC
+Mounted soldiers that use axes[NL]
+to cut through the battlefield.[NL]
+Slow but sturdy.[X]
+
+## MSG_CLASS_PALADIN_DESC
+Honored cavaliers that dominate[NL]
+battlefields with heir balanced[NL]
+and supreme mobility.[X]
+
+## MSG_CLASS_SWORDFIGHTER_DESC
+Infantry soldiers that pierce enemy[NL]
+lines with high skill and speed.[X]
+
+## MSG_CLASS_OUTLAW_DESC
+Frail rouges that can pick locks[NL]
+and attack using bows.[NL]
+High speed and resistance.[X]
+
+## MSG_CLASS_ADVENTURER_DESC
+Seasoned outlaws that wield bows[NL]
+and staves. High res, speed, and[NL]
+above average mobility.[X]
+
+## MSG_CLASS_NINJA_DESC
+Stealthy spies that can pick[NL]
+locks and attack their foes[NL]
+at range using daggers.[X]

@@ -1,5 +1,6 @@
 #include "common-chax.h"
 #include "class-types.h"
+#include "KSDefinitions.h"
 
 const u8 KernelClassList_Flier[] = {
 	CLASS_PEGASUS_KNIGHT,

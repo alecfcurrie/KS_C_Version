@@ -5,7 +5,8 @@
 
 #define LOCAL_TRACE 0
 
-const struct WrankBonusConfEnt *GetWrankBonusConf(struct Unit *unit, int wtype, int wrank)
+const struct WrankBonusConfEnt *GetWrankBonusConf(struct Unit *unit, int wtype,
+						  int wrank)
 {
 	const struct WrankBonusConfEnt *it;
 
@@ -30,21 +31,24 @@ int GetWtypeFromRTextMsg(u16 msg)
 /**
  * pre-battle
  */
-void PreBattleCalc_WrankBonus(struct BattleUnit *attacker, struct BattleUnit *defender)
+void PreBattleCalc_WrankBonus(struct BattleUnit *attacker,
+			      struct BattleUnit *defender)
 {
 	int wtype = attacker->weaponType;
 	int wrank = GetWeaponLevelFromExp(UNIT_WRANK(&attacker->unit, wtype));
-	const struct WrankBonusConfEnt *conf = GetWrankBonusConf(&attacker->unit, wtype, wrank);
+	const struct WrankBonusConfEnt *conf =
+		GetWrankBonusConf(&attacker->unit, wtype, wrank);
 
 	if (conf) {
-		attacker->battleAttack       += conf->bonus[BATTLE_STATUS_ATK];
-		attacker->battleDefense      += conf->bonus[BATTLE_STATUS_DEF];
-		attacker->battleSpeed        += conf->bonus[BATTLE_STATUS_AS];
-		attacker->battleHitRate      += conf->bonus[BATTLE_STATUS_HIT];
-		attacker->battleAvoidRate    += conf->bonus[BATTLE_STATUS_AVO];
-		attacker->battleCritRate     += conf->bonus[BATTLE_STATUS_CRIT];
-		attacker->battleDodgeRate    += conf->bonus[BATTLE_STATUS_DODGE];
-		attacker->battleSilencerRate += conf->bonus[BATTLE_STATUS_SILENCER];
+		attacker->battleAttack += conf->bonus[BATTLE_STATUS_ATK];
+		attacker->battleDefense += conf->bonus[BATTLE_STATUS_DEF];
+		attacker->battleSpeed += conf->bonus[BATTLE_STATUS_AS];
+		attacker->battleHitRate += conf->bonus[BATTLE_STATUS_HIT];
+		attacker->battleAvoidRate += conf->bonus[BATTLE_STATUS_AVO];
+		attacker->battleCritRate += conf->bonus[BATTLE_STATUS_CRIT];
+		attacker->battleDodgeRate += conf->bonus[BATTLE_STATUS_DODGE];
+		attacker->battleSilencerRate +=
+			conf->bonus[BATTLE_STATUS_SILENCER];
 	}
 }
 
@@ -66,7 +70,9 @@ void HbPopuplate_WrankBonus(struct HelpBoxProc *proc)
 	if (wtype < 0)
 		return;
 
-	conf = GetWrankBonusConf(gStatScreen.unit, wtype, GetWeaponLevelFromExp(UNIT_WRANK(gStatScreen.unit, wtype)));
+	conf = GetWrankBonusConf(
+		gStatScreen.unit, wtype,
+		GetWeaponLevelFromExp(UNIT_WRANK(gStatScreen.unit, wtype)));
 	if (!conf)
 		return;
 
@@ -75,17 +81,27 @@ void HbPopuplate_WrankBonus(struct HelpBoxProc *proc)
 
 void DrawHelpBoxLabels_WrankBonus(void)
 {
-	Text_InsertDrawString(&gHelpBoxSt.text[0], 0x00, TEXT_COLOR_47CF, GetStringFromIndex(MSG_04F3)); // atk
-	Text_InsertDrawString(&gHelpBoxSt.text[0], 0x30, TEXT_COLOR_47CF, GetStringFromIndex(MSG_04EF)); // def
-	Text_InsertDrawString(&gHelpBoxSt.text[0], 0x60, TEXT_COLOR_47CF, GetStringFromIndex(MSG_0504)); // as
+	Text_InsertDrawString(&gHelpBoxSt.text[0], 0x00, TEXT_COLOR_47CF,
+			      GetStringFromIndex(MSG_04F3)); // atk
+	Text_InsertDrawString(&gHelpBoxSt.text[0], 0x30, TEXT_COLOR_47CF,
+			      GetStringFromIndex(MSG_04EF)); // def
+	Text_InsertDrawString(&gHelpBoxSt.text[0], 0x60, TEXT_COLOR_47CF,
+			      GetStringFromIndex(MSG_0504)); // as
 
-	Text_InsertDrawString(&gHelpBoxSt.text[1], 0x00, TEXT_COLOR_47CF, GetStringFromIndex(MSG_04F4)); // hit
-	Text_InsertDrawString(&gHelpBoxSt.text[1], 0x30, TEXT_COLOR_47CF, GetStringFromIndex(MSG_04F5));  // avo
-	Text_InsertDrawString(&gHelpBoxSt.text[1], 0x60, TEXT_COLOR_47CF, GetStringFromIndex(MSG_0501));  // crit
+	Text_InsertDrawString(&gHelpBoxSt.text[1], 0x00, TEXT_COLOR_47CF,
+			      GetStringFromIndex(MSG_04F4)); // hit
+	Text_InsertDrawString(&gHelpBoxSt.text[1], 0x30, TEXT_COLOR_47CF,
+			      GetStringFromIndex(MSG_04F5)); // avo
+	Text_InsertDrawString(&gHelpBoxSt.text[1], 0x60, TEXT_COLOR_47CF,
+			      GetStringFromIndex(MSG_0501)); // crit
 
-	Text_InsertDrawString(&gHelpBoxSt.text[2], 0x00, TEXT_COLOR_47CF, GetStringFromIndex(MSG_51E)); // dodge
-	Text_InsertDrawString(&gHelpBoxSt.text[2], 0x30, TEXT_COLOR_47CF, GetStringFromIndex(MSG_SILENCER));  // dodge
-	Text_InsertDrawString(&gHelpBoxSt.text[2], 0x70, TEXT_COLOR_47CF, GetStringFromIndex(MSG_MSS_SupportBonus));  // bonus
+	Text_InsertDrawString(&gHelpBoxSt.text[2], 0x00, TEXT_COLOR_47CF,
+			      GetStringFromIndex(MSG_51E)); // dodge
+	Text_InsertDrawString(&gHelpBoxSt.text[2], 0x30, TEXT_COLOR_47CF,
+			      GetStringFromIndex(MSG_SILENCER)); // dodge
+	Text_InsertDrawString(
+		&gHelpBoxSt.text[2], 0x70, TEXT_COLOR_47CF,
+		GetStringFromIndex(MSG_MSS_SupportBonus)); // bonus
 }
 
 void DrawHelpBoxStats_WrankBonus(struct ProcHelpBoxIntro *proc)
@@ -93,21 +109,30 @@ void DrawHelpBoxStats_WrankBonus(struct ProcHelpBoxIntro *proc)
 	int wtype = GetWtypeFromRTextMsg(proc->msg);
 	int wrank = GetWeaponLevelFromExp(UNIT_WRANK(gStatScreen.unit, wtype));
 	const struct WrankBonusConfEnt _conf = { 0 };
-	const struct WrankBonusConfEnt *conf = GetWrankBonusConf(gStatScreen.unit, wtype, wrank);
+	const struct WrankBonusConfEnt *conf =
+		GetWrankBonusConf(gStatScreen.unit, wtype, wrank);
 
 	if (!conf) {
 		Errorf("failed to get conf: wtype=%d, wrank=%d", wtype, wrank);
 		conf = &_conf;
 	}
 
-	Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[0], 0x20, TEXT_COLOR_456F, conf->bonus[BATTLE_STATUS_ATK]);
-	Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[0], 0x50, TEXT_COLOR_456F, conf->bonus[BATTLE_STATUS_DEF]);
-	Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[0], 0x80, TEXT_COLOR_456F, conf->bonus[BATTLE_STATUS_AS]);
+	Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[0], 0x20, TEXT_COLOR_456F,
+				     conf->bonus[BATTLE_STATUS_ATK]);
+	Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[0], 0x50, TEXT_COLOR_456F,
+				     conf->bonus[BATTLE_STATUS_DEF]);
+	Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[0], 0x80, TEXT_COLOR_456F,
+				     conf->bonus[BATTLE_STATUS_AS]);
 
-	Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[1], 0x20, TEXT_COLOR_456F, conf->bonus[BATTLE_STATUS_HIT]);
-	Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[1], 0x50, TEXT_COLOR_456F, conf->bonus[BATTLE_STATUS_AVO]);
-	Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[1], 0x80, TEXT_COLOR_456F, conf->bonus[BATTLE_STATUS_CRIT]);
+	Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[1], 0x20, TEXT_COLOR_456F,
+				     conf->bonus[BATTLE_STATUS_HIT]);
+	Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[1], 0x50, TEXT_COLOR_456F,
+				     conf->bonus[BATTLE_STATUS_AVO]);
+	Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[1], 0x80, TEXT_COLOR_456F,
+				     conf->bonus[BATTLE_STATUS_CRIT]);
 
-	Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[2], 0x20, TEXT_COLOR_456F, conf->bonus[BATTLE_STATUS_DODGE]);
-	Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[2], 0x50, TEXT_COLOR_456F, conf->bonus[BATTLE_STATUS_SILENCER]);
+	Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[2], 0x20, TEXT_COLOR_456F,
+				     conf->bonus[BATTLE_STATUS_DODGE]);
+	Text_InsertDrawNumberOrBlank(&gHelpBoxSt.text[2], 0x50, TEXT_COLOR_456F,
+				     conf->bonus[BATTLE_STATUS_SILENCER]);
 }

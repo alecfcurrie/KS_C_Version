@@ -9,11 +9,16 @@ WARNING ________________comment_out_in_config______________
 WARNING _________________CONFIG_USE_DEBUG__________________
 WARNING
 
+#define EndConvo "CALL $9EE2C4" //From SME's eventing guide.
+
 #include "RemoveWM/RemoveWM.event"
-#include "Event/Event.event"
-#include "Chapter/Chapter.event"
-#include "GameIntro/GameIntro.event"
-#include "ChapterIntro/ChapterIntro.event"
+#include "ChapterEvents/REDAs.event"
+{
+    #include "ChapterEvents/Chapter1.event"
+}
+{
+    #include "ChapterEvents/DebugMap.event"
+}
 
 WARNING
 WARNING ___________________________________________________

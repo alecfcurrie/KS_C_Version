@@ -1,0 +1,16 @@
+ #define CHARACTER_AUDREY 1
+ #define CHARACTER_WESLEY 2
+ #define CHARACTER_OSBORNE 3
+ #define CHARACTER_ELAINE 4
+ #define CHARACTER_CORDELL 5
+ #define CHARACTER_SURGE 6
+ #define CHARACTER_OSMA 7
+ #define CHARACTER_JYRI 8
+ #define CHARACTER_LIEV 9
+ 
+ // Enemy characters
+ #define CHARACTER_GLOVE 0x40
+ #define CHARACTER_FESTER  0x41
+ 
+ // Generics
+ #define CHARACTER_SLAVER_0 0x80

@@ -9,6 +9,7 @@
 #include "constants/items.h"
 #include "constants/skills.h"
 #include "constants/combat-arts.h"
+#include "KSDefinitions.h"
 
 int GetItemFromSlot(struct Unit *unit, int slot)
 {

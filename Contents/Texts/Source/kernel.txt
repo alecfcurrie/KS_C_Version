@@ -32,6 +32,7 @@ W.I.P.[X]
 #include "texts/Skills_Movement.txt"
 #include "texts/Skills_CombatArt.txt"
 #include "texts/Skills_Misc.txt"
+#include "texts/Skills_Personal.txt"
 #include "texts/CombatArt.txt"
 #include "texts/CombatArt_Sword.txt"
 #include "texts/CombatArt_Axe.txt"
@@ -39,3 +40,13 @@ W.I.P.[X]
 #include "texts/CombatArt_Bow.txt"
 #include "texts/kernel_tutorial.txt"
 #include "texts/misc.txt"
+
+#include "texts/Game/Weapons/weapon_info.txt"
+
+#include "texts/Game/Units/UnitNames.txt"
+#include "texts/Game/Units/UnitDescs.txt"
+
+#include "texts/Game/Classes/ClassNames.txt"
+#include "texts/Game/Classes/ClassDescs.txt"
+
+#include "texts/Game/Chapter/MasterChapterTextInstaller.txt"

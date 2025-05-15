@@ -25,17 +25,12 @@ rm -rf $RELEASE_DIR
 mkdir $RELEASE_DIR
 
 # generate lyn-jump to refe
-REF_EVENT=$(find | grep "ref.event")
-if echo $REF_EVENT | grep -q .; then
-    echo "#define PROTECT_EN PROCTECT_EN" >> $REF_EVENT
-    echo "#ifdef PROCTECT_EN" >> $REF_EVENT
-    for GENERATED_LYNFILE in $(find . -type f -name "*.event"); do
-        cat $GENERATED_LYNFILE | grep "PROTECT " >> $REF_EVENT
-    done
-    echo "#endif /*PROCTECT_EN */" >> $REF_EVENT
-else
-    echo "No ref event found!"
-fi
+echo "// #define PROTECT_EN PROCTECT_EN" >> *.ref.event
+echo "#ifdef PROCTECT_EN" >> *.ref.event
+for GENERATED_LYNFILE in $(find . -type f -name "*.event"); do
+    cat $GENERATED_LYNFILE | grep "PROTECT " >> *.ref.event
+done
+echo "#endif /*procTECT_EN */" >> *.ref.event
 
 # make -j
 cp fe8-kernel-* $RELEASE_DIR
@@ -54,16 +49,9 @@ collect_header $RELEASE_DIR/include
 RELEASE_EADIR=$RELEASE_DIR/buildfile
 
 install -d $RELEASE_EADIR
-cp -r Preload Kernel Data Contents include main.event main-kernel.event Debug Fonts $RELEASE_EADIR
+cp -r Preload Wizardry Data Contents include main.event Debug Fonts $RELEASE_EADIR
 
 zip -r $RELEASE_DIR/buildfile.zip $RELEASE_DIR/buildfile/
-zip -r $RELEASE_DIR/include.zip $RELEASE_DIR/include/
-zip -r $RELEASE_DIR/Patches.zip $RELEASE_DIR/Patches/
 
-echo "!*" > $RELEASE_DIR/.gitignore
-
-# remove caches
-find $RELEASE_EADIR -type f \( -name "*.o" \) | xargs rm
 find $RELEASE_DIR | grep gitignore | xargs rm
-
-# cd $RELEASE_DIR && rm -r buildfile include Patches && rm *.gba && cd ..
+echo "!*" > $RELEASE_DIR/.gitignore

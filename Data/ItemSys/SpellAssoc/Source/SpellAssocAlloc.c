@@ -1,4 +1,5 @@
 #include "common-chax.h"
+#include "KSDefinitions.h"
 
 const struct SpellAssoc gSpellAssocData_Alloc[] = {
 	SPELL_ASSOC_DATA_WPN_DEFAULT(ITEM_SWORD_IRON),

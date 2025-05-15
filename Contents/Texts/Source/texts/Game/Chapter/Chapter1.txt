@@ -1,0 +1,686 @@
+## Chapter1InitialConvo1
+[MidLeft][LoadFester]
+[MidRight][LoadGlove]
+So[Beat]this the village[,] boss?[A]
+
+[MidLeft]
+Aye[,] it fits the bill.[A]
+
+[MidRight]
+So[Beat]we just head in and[N]
+and round up the slav-[A]
+
+
+[MidLeft]
+That won't be necessary[.][N]
+I'll handle this one myself.[AN]
+You fools can keep watch and make[N]
+sure no one interrupts my fun![A]
+
+[MidRight]
+O-oh[,] right boss. Just don't[N]
+cause too much ruckus in there -[AN]
+we don't need that lordling who's been[N]
+snooping around catching wind of us.[A]
+
+[MidLeft]
+Tell me[,] Glove[,] who's the[N]
+brains of this outfit?[A]
+
+[MidRight]
+[Beat]You are.[A]
+
+[MidLeft]
+Correct[.] I am[.][N]
+Not you.[A]
+
+[MidRight]
+[Beat][A]
+
+[MidLeft]
+Now[,] as I said -[...] stand guard[,][N]
+and let me enjoy myself.[A]
+
+[MidRight]
+Right[,] boss[.][N]
+We'll hold the line.[A][X]
+
+## Chapter1InitialConvo2
+[MidLeft][LoadGlove]
+Pompous bastard[,] always hogging the glory.[AN]
+You heard him boys[!] Stand watch[,] and[N]
+keep your eyes sharp for that lordling![AN]
+If anything gets in your way, cut it[N]
+down before it has the chance to shout![A][X]
+
+## Chapter1InitialConvo3
+[MidRight][LoadWesley]
+[MidLeft][LoadAudrey]
+So[,] Wesley[,] it appears this [N]
+area is the target of the slavers'[AN]
+next attack after all.[A]
+
+[MidRight]
+Indeed[.] It seems they've entrenched[N]
+themselves deep within the valley[.][AN]
+What are your orders[,] Princess Audrey?[A]
+
+[MidLeft]
+Our reinforcements are still a few moments[N]
+away[,] but if we wait any longer[,] their[AN]
+main force could slip away.[AN]
+It's best we engage the slavers now[N]
+before they slip through our fingers.[A]
+
+[MidRight]
+With all due respect[,] your [N]
+Highness[,] are you certain[?][AN]
+You've trained for this[,][N]
+but true combat -[A]
+
+[MidLeft]
+- is nothing like sparring with dummies[.][AN]
+I know Wesley[,] and by the goddess[,][N]
+Cordell never lets me forget it[.][AN]
+But he believes I'm ready[,] and today[N]
+seems as good a day as any to prove it.[AN]
+Besides[,] I doubt my conscience will be[N]
+too troubled[,] given the filth we're[AN]
+dealing with.[A]
+
+[MidRight]
+I see your mind is set.[AN]
+I've known you long enough to know[N]
+there's no swaying you now.[AN]
+Very well[,] let us give these[N]
+slavers the justice they deserve![AN]
+But remember[,] our reinforcements[N]
+are not far behind.[AN]
+Don't stray too far ahead![A]
+
+[ClearFace]
+
+[MidLeft]
+[ToggleSmile]
+Says the man on horseback.[A][X]
+
+## Chapter1Turn1EP
+
+[MidLeft][LoadFester]
+[FarRight][LoadVillager2]
+Elder[!] A lone[N]
+visitor has arrived![A]
+
+[Right][LoadVillager1]
+Hail[,] traveller[.] What business[N]
+brings you to Gorien?[A]
+
+[MidLeft]
+The name's Fester[.] I'm but a[N]
+humble[Beat]merchant[,] of sorts.[AN]
+I've come to your village in the hopes[N]
+of procuring some goods for my trade.[A]
+
+[Right]
+You'll find little here worth trading[.][AN]
+Our harvest is meagre[,] and[N]
+the seasons have not been kind.[A]
+
+[MidLeft]
+Oh[,] I'm not after crops or trinkets[.][N]
+My interests lie elsewhere.[AN]
+I've heard whispers that you're[N]
+sheltering Felean refugees.[A]
+
+[Right][MoveMidRight]
+You[Beat]you're a slaver![A]
+
+[MidLeft]
+I prefer "merchant[,]" but let's[N]
+not split hairs[.][AN]
+I'd rather conduct our business[N]
+without any[Beat]unpleasantness.[A]
+
+[FarRight]
+Should I call the militia?[A]
+
+[MidRight]
+[Beat][A]
+
+[MidLeft]
+Since I'm feeling generous today[,][N]
+I'll make it simple for you.[AN]
+Hand over the Felean refugees in[N]
+exchange for the safety of your village.[AN]
+Not a single home need be touched[,][N]
+not a single life need be lost.[AN]
+A fair trade, don't you think?[A]
+
+[MidRight][MoveRight]
+[Beat]Don't summon the militia.[A]
+
+[MidLeft]
+Oh[?] I expected[N]
+more resistance.[A]
+
+
+[Right]
+Gather the children - the ones who[N]
+arrived a fortnight ago.[AN]
+I won't gamble the lives of my people[N]
+for the sake of a few refugees.[A]
+
+[FarRight]
+A-as you wish[,] elder.[A]
+[ClearFace]
+
+[MidLeft]
+A wise choice[,] elder[.] I just knew[N]
+we could come to an agreement![A][X]
+
+## Chapter1Turn2PP1
+
+[MidRight][LoadWesley]
+[MidLeft][LoadAudrey]
+What was that sound?[A]
+
+[MidRight]
+It sounded like a tree falling.[AN]
+Perhaps the enemy is cutting down thickets[N]
+to cross the river and outflank us.[A]
+
+[Left]
+I thought this was a[N]
+small slaver band[!][AN]
+How do they have the men to[N]
+coordinate such a manoeuvre?[A]
+
+[LoadOverworldFaces]
+
+[FarFarLeft]
+Lady Audrey, I expected you to[N]
+remember the first rule of tactics[:][AN]
+Never underestimate your foe.[A][X]
+
+## Chapter1Turn2PP2
+[FarLeft][LoadElaine]
+[Left][LoadOsborne]
+[MidRight][LoadAudrey]
+Osborne[!] Elaine[!] I'm[N]
+relieved you've caught up![A]
+
+[Left]
+As am I[,] milady[,] though I must[N]
+say[,] the plan we agreed upon[AN]
+has[Beat]unraveled somewhat.[N]
+Did I not counsel patience[,][AN]
+to wait until our forces were[N]
+fully assembled before striking?[A]
+
+
+[MidRight]
+Yes[,] but once we arrived[,] the[N]
+slavers had already established[AN]
+themselves in the valley.[N]
+I thought it best to act swiftly[,][AN]
+rather than risk letting them[N]
+slip through our grasp.[A]
+
+[Left]
+Hmm[,] understandable[Beat]but[N]
+a dangerous play[.][AN]
+I doubt King Leland would be pleased[N]
+to hear his daughter gambled her safety[AN]
+on her very first day of battle.[A]
+
+[FarLeft]
+She knew reinforcements were coming[,] so[N]
+let's not dwell on it[!][AN]
+What matters now is that[N]
+we've got her back![A]
+
+[MidRight]
+Well said[,] Elaine! Now let's rid[N]
+this valley of the slaver scourge![A]
+
+[FarLeft]
+Right behind you[,] milady![A]
+[ClearFace]
+
+[MidRight]
+[ClearFace]
+
+[Left]
+[CloseEyes]Oh[,] what reckless[N]
+courage youth have.[A][X]
+
+## Chapter1Turn2EP1
+[MidLeft][LoadGlove]
+[Right][LoadFester]
+That went well[!][AN]
+The villagers didn't so much as blink[N]
+while I went about my business![A]
+
+[MidLeft]
+Looks like you've caught [N]
+some fresh meat![A]
+
+[Right]
+Quite so[.] Well then[,] care to[N]
+introduce yourselves[,] boys?[A]
+
+[FarRight][LoadJyri]
+[Beat][A]
+[ClearFace]
+
+[FarRight][LoadLiev]
+[Beat][A]
+[ClearFace]
+
+[Right]
+Ah[,] no matter[.] I don't need[N]
+them to speak to sell them![A]
+
+[MidLeft]
+Heh[,] true enough.[AN]
+Now that you're here[,] though[,][N]
+I heard trees coming down.[AN]
+Some of our boys might be[N]
+tangling with that lordling.[A]
+
+[Right]
+And this concerns me[N]
+how[,] exactly?[A]
+
+[MidLeft]
+Aren't you going to help?[A]
+
+[Right]
+Oh[,] Glove[,] your memory fails you![AN]
+My task was to gather slaves from[N]
+the village - at any cost.[AN]
+Your task is to keep me[N]
+safe at all costs[.][AN]
+So[,] naturally[,] I must return[N]
+to base with my prize.[AN]
+You[,] however[,] should be dealing[N]
+with that lordling and her knights[.][AN]
+Try to keep them off my back![A]
+
+[MidLeft]
+O-oh.[A]
+
+[Right]
+What's the problem[?] You've got[N]
+near twenty men at your command.[AN]
+One simple lordling and a handful[N]
+of knights shouldn't trouble you.[AN]
+Honestly[,] Glove[,] have a little[N]
+more confidence.[A]
+
+[MidLeft]
+R-right[.] Well[,]  I'll see you[N]
+back at the base[,] then.[A]
+
+[Right]
+That's more like it[.][N]
+Farewell[,] Glove![A]
+[ClearFace]
+
+[MidLeft]
+[Beat][A][X]
+
+## Chapter1Turn2EP2
+
+[Left][LoadJyri]
+[FarLeft][LoadLiev]
+[MidRight][LoadFester]
+He's even more of a fool than I thought.[N]
+I can't believe he actually fell for[AN]
+the idea that I was ordered to leave[N]
+him behind. Wouldn't you two agree?[A]
+
+[Left]
+[Beat][A]
+
+[FarLeft]
+[Beat][A]
+
+[MidRight]
+Pah[,] no matter.[AN]
+I've no intention of sticking[N]
+around to face Cordell's knights.[AN]
+Let's hope Glove can at least[N]
+keep them off my trail.[AN]
+Come now[,] boys! You're worth[N]
+more whole than in pieces.[AN]
+Don't make me lose my temper![A][X]
+
+## Chapter1Turn3PP
+[FarLeft][LoadSurge]
+[MidRight][LoadAudrey]
+[Left][LoadCordell]
+We've arrived milady[.] It seems you've[N]
+already gotten a head start.[A]
+
+[MidRight]
+Cordell[!] Surge[!][N]
+It's good to see the both of you[.][AN]
+We were concerned the slavers [N]
+weren't going to stick around[,] so -[A]
+
+[FarLeft]
+Princess[,] don't bother explaining it[.][AN]
+Just point me towards which bandits'[N]
+skulls I need to crack.[A]
+
+[Left]
+Indeed[,] let us focus on the battle[.][AN]
+We must move quickly to stamp out[N]
+this blight before they get away![A][X]
+
+## Chapter1Turn3EP
+
+[MidRight][LoadVillager1]
+[MidLeft][LoadOsma]
+Elder[!] What was that[N]
+commotion just now[?][AN]
+I saw people moving[N]
+about in a panic.[A]
+
+[MidRight]
+O-Oh[,] Osma[Beat]It's[N]
+nothing that concerns you.[A]
+
+[MidLeft]
+What happened to the refugees[?][N]
+Where are the Felean children?[A]
+
+[MidRight]
+A man came to our village[.][N]
+He threatened to burn down everything[N]
+if we didn't hand the children over.[AN]
+I-I did what I had to[.][A]
+
+[MidLeft]
+You gave them to him?[!][N]
+We have a militia[,] Elder[!][AN]
+We could've fought back![A]
+
+[MidRight]
+And risk what[?] My duty is to[N]
+protect this village[,] Osma.[AN]
+What if that man had followed[N]
+through with his threat?[AN]
+What if our people had died[N]
+trying to shield a few outsiders?[A]
+
+[MidLeft]
+Two of our own are as[N]
+good as dead already![AN]
+By giving them to that slaver,[N]
+you've condemned those children[AN]
+to a fate worse than death![A]
+
+[MidRight]
+Those children were NOT [N]
+of this village[!][AN]
+They were wanderers[,] living[N]
+off what little we could spare.[AN]
+We could not afford to protect[N]
+them at the cost of our lives![A]
+
+[MidLeft]
+How can you be so heartless[?][N]
+They were children[,] Elder![A]
+
+[MidRight]
+Enough[,] Osma[!][N]
+I will not tolerate insubordination.[AN]
+You are forbidden from engaging[N]
+with those bandits.[AN]
+We cannot endanger the prosperity[N]
+of our village over mere sentiment![A]
+[ClearFace]
+
+[MidLeft]
+Heartless old fool[Beat]I can't[N]
+stand by and let this happen.[AN]
+But if I act too soon[,][N]
+I'll put everyone at risk.[AN]
+I'll have to bide my time[Beat][N]
+wait until the right moment.[AN]
+When he's not breathing down my[N]
+neck[,] I'll find a way to rescue them.[A][X]
+
+## Chapter1EndingConvo1
+
+[FarRight][LoadOsborne]
+[Right][LoadCordell]
+[MidLeft][LoadAudrey]
+That seems to be the last of them.[A]
+
+[Right]
+Indeed[.] Let us enter the village[N]
+and assess the situation.[A][X]
+
+## Chapter1EndingConvo2
+
+[FarLeft][LoadCordell]
+[Left][LoadAudrey]
+The village is[Beat]untouched.[A]
+
+[FarLeft]
+It appears so[.][AN]
+There's no sign of any[N]
+attack or plunder.[A]
+
+[Right][LoadOsborne]
+Something feels amiss[.][N]
+We should speak with the villagers.[A]
+
+[FarRight][LoadVillager1]
+Sir Cordell[!] I thank you[N]
+for coming to our rescue![A]
+
+[FarLeft]
+It's my duty to help.[AN]
+I only wish that I could[N]
+have arrived here sooner.[AN]
+Pray tell[,] are there any[N]
+injured?[A]
+
+[FarRight]
+None[,] Sir Cordell.[AN]
+A lone bandit entered town a moment[N]
+ago demanding that all Felean[N]
+refugees be immediately handed over.[AN]
+We complied to avoid bloodshed.[A]
+
+[Left]
+You complied?![A]
+
+[FarRight]
+P-princess Audrey?![A]
+
+[Left]
+This village has a militia[!][N]
+Did you not even try to resist?[A]
+
+[Right]
+Lady Audrey[,] I implore you to[N]
+calm down and let the man speak.[A]
+
+[FarRight]
+Th-there were only two children -[....][N]
+orphans who arrived weeks ago[.][AN]
+I do not know who was caring[N]
+for them or why[,] but I can't[AN]
+risk the security of the entire[N]
+village over two vagabonds.[A]
+
+[Left]
+[MoveLeft]
+Vagabonds[?] Those were[N]
+children[!] How could you -[A]
+
+[Right]
+Lady Audrey[!][N]
+Control yourself![A]
+
+[FarLeft]
+My apologies for Lady Audrey's[N]
+outburst[,] Elder[.][AN]
+It is her first time on[N]
+the battlefield.[AN]
+The strain of the day weighs[N]
+heavily upon her.[A]
+
+[Left]
+[Beat][A]
+
+[FarLeft]
+Can you tell us where the[N]
+bandits went after they left?[A]
+
+[FarRight]
+I do not know[,] Sir Cordell[.][AN]
+I dared not venture beyond the[N]
+village walls[,] for fear of my life.[A]
+
+[FarLeft]
+I see[Beat]Thank you[N]
+for your report.[A]
+
+[FarRight]
+O-of course[,] Sir Cordell[.][N]
+Good day to you all.[A]
+
+[ClearFace]
+[FarLeft]
+It seems we'll get little useful[N]
+information from the villagers.[AN]
+Let us regroup and plan our[N]
+next move.[A]
+[ClearFace]
+
+[Left][ClearFace]
+[Right][ClearFace]
+
+[FarRight][LoadOsma]
+[Beat][A][X]
+
+## Chapter1EndingConvo3
+[Left][LoadAudrey]
+[FarLeft][LoadOsborne]
+[FarRight][LoadWesley]
+How did it go in there?[A]
+
+[Left]
+It's[Beat]disgraceful.[AN]
+They just let the slavers take the[N]
+children[,] as if they were nothing![A]
+
+[FarRight]
+O-oh[Beat][N]
+That's terrible.[A]
+
+[Left]
+I knew some resented my father's[N]
+decision to shelter the refugees[,][AN]
+but to stand by and let children[N]
+be kidnapped[Beat][A]
+
+[FarLeft]
+I must admit I did not expect the dissent[N]
+of the villagers to be so extreme.[AN]
+However[,] Lady Audrey[,] you must not[N]
+let your emotions get the better of you.[A]
+
+[Left][ClearFace]
+[Right][LoadAudrey]
+How can I NOT let my emotions[N]
+get the better of me?[AN]
+They stood by while those[N]
+children were taken[,] Osborne![A]
+
+[FarLeft]
+I share your outrage[,] Lady Audrey[,] but[N]
+anger will not bring those children back.[AN]
+We need cooperation[,] not scorn[,] if we[N]
+are to uncover useful information.[A]
+
+[Right]
+What does it matter[?] That coward[N]
+had nothing useful to offer.[A]
+
+[LoadOverworldFaces]
+
+[FarFarLeft]
+I might be able to[N]
+help with that.[A][X]
+
+## Chapter1EndingConvo4
+[FarLeft][LoadOsma]
+[Right][LoadAudrey]
+[FarRight][LoadCordell]
+Who are you?[A]
+
+[FarLeft]
+My name is Osma.[AN]
+The two children those bandits kidnapped[N]
+arrived in our village a fortnight ago.[AN]
+They stated they were part of a merchant[N]
+convoy that got raided, and had been[AN]
+wandering the countryside for many days.[AN]
+After hearing their tale[,] I [N]
+offered to care for them[.][AN]
+However[,] many of the other villagers[N]
+despised the Felean refugees.[AN]
+I imagine most of them were all too happy[N]
+to see them go.[A]
+
+[Right]
+That's awful![A]
+
+[FarLeft]
+Indeed[.] I wasn't able to stop them[N]
+in time[,] but I saw the bandits flee.[AN]
+They went north[,] toward[N]
+Chariot Valley.[A]
+
+
+[Left][LoadOsborne]
+I see[.] You have our thanks[,] Osma[.][N]
+We'll follow their trail at once.[A]
+
+[FarLeft]
+Please[,] allow me to join you[.][AN]
+I'm a trained anima mage[,] so[AN]
+you needn't worry about keeping[N]
+me safe all the time.[AN]
+Plus[,] I have a score to settle with[N]
+these slaver scumbags.[A]
+
+[Left]
+Well[,] we've clearly underestimated[N]
+the size of this slaver operation.[AN]
+A capable mage would be a valuable[N]
+asset[.] What say you[,] Cordell?[A]
+
+[FarRight]
+I have no objections[.][N]
+Welcome to the team[,] Osma.[A]
+
+[Right]
+Yes[,] welcome[!][AN]
+And don't worry - I won't rest[N]
+until those children are safe.[A]
+
+[FarLeft]
+Thank you very much[!][N]
+I won't let you down![A]
+
+[Left]
+We haven't a moment to lose. Let's[N]
+move north before the trail grows cold.[A][X]

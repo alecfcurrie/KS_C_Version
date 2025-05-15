@@ -5,6 +5,7 @@
 #include <combat-art.h>
 #include <kernel-tutorial.h>
 #include <constants/texts.h>
+#include "KSDefinitions.h"
 
 #include <gaiden-magic.h>
 

@@ -10,8 +10,6 @@
 #include "kernel-tutorial.h"
 #include "constants/skills.h"
 
-#define LOCAL_TRACE 0
-
 typedef void (*PreBattleCalcFunc) (struct BattleUnit *buA, struct BattleUnit *buB);
 extern PreBattleCalcFunc const *const gpPreBattleCalcFuncs;
 void PreBattleCalcWeaponTriangle(struct BattleUnit *attacker, struct BattleUnit *defender);
@@ -40,35 +38,21 @@ LYN_REPLACE_CHECK(ComputeBattleUnitAttack);
 void ComputeBattleUnitAttack(struct BattleUnit *attacker, struct BattleUnit *defender)
 {
 	int status;
-	bool effective = false;;
-	int effective_amplifier = 100;
-	int effective_reduce = 0x100;
 
 	status = GetItemMight(attacker->weapon);
 
-	if (IsItemEffectiveAgainst(attacker->weapon, &defender->unit)) {
-		effective = true;
-		effective_amplifier = CalcWeaponEffectivenessScale(attacker->weapon);
-	} else if (IsUnitEffectiveAgainst(&attacker->unit, &defender->unit)) {
-		effective = true;
-		effective_amplifier = 300;
-	}
+	if (IsUnitEffectiveAgainst(&attacker->unit, &defender->unit) || IsItemEffectiveAgainst(attacker->weapon, &defender->unit)) {
+		status = status * 2;
 
-	if (effective) {
 #if (defined(SID_Resourceful) && (COMMON_SKILL_VALID(SID_Resourceful)))
 		if (BattleFastSkillTester(attacker, SID_Resourceful))
-			effective_amplifier += SKILL_EFF0(SID_Resourceful);
+			status = status * 2;
 #endif
 
 #if (defined(SID_SolidRock) && (COMMON_SKILL_VALID(SID_SolidRock)))
 		if (BattleFastSkillTester(defender, SID_SolidRock))
-			effective_reduce += DAMAGE_DECREASE(SKILL_EFF0(SID_SolidRock));
+			status = status / 2;
 #endif
-
-		/**
-		 * Calc result
-		 */
-		status = k_udiv(status * effective_amplifier * 0x100, 100 * effective_reduce);
 	}
 
 	if (IsMagicAttack(attacker))
@@ -106,25 +90,15 @@ void ComputeBattleUnitDefense(struct BattleUnit *attacker, struct BattleUnit *de
 	attacker->battleDefense = status;
 }
 
+LYN_REPLACE_CHECK(ComputeBattleUnitHitRate);
+void ComputeBattleUnitHitRate(struct BattleUnit* bu) {
+    bu->battleHitRate = (bu->unit.skl * 3) / 2 + GetItemHit(bu->weapon) + (bu->unit.lck / 2) + bu->wTriangleHitBonus;
+}
+
 void ComputeBattleUnitAvoidRate_Rework(struct BattleUnit *bu)
 {
-	int status;
+	bu->battleAvoidRate = (bu->battleSpeed * 3) / 2 + bu->terrainAvoid + (bu->unit.lck / 2);
 
-	/**
-	 * vanilla
-	 */
-	ComputeBattleUnitAvoidRate(bu);
-
-	status = bu->battleAvoidRate;
-
-	if (!CheckOutdoorTerrain(bu->terrainId)) {
-		int jid = UNIT_CLASS_ID(&bu->unit);
-
-		if (CheckClassFlier(jid) || CheckClassCavalry(jid))
-			status -= gpKernelBattleDesignerConfig->rider_debuff_indoor;
-	}
-
-	bu->battleAvoidRate = status;
 	if (bu->battleAvoidRate < 0)
 		bu->battleAvoidRate = 0;
 }
@@ -132,31 +106,38 @@ void ComputeBattleUnitAvoidRate_Rework(struct BattleUnit *bu)
 LYN_REPLACE_CHECK(ComputeBattleUnitCritRate);
 void ComputeBattleUnitCritRate(struct BattleUnit *bu)
 {
-	int status;
-	int jid = UNIT_CLASS_ID(&bu->unit);
+	int itemCrit = GetItemCrit(bu->weapon);
+	if (itemCrit == 0xFF) {
+		bu->battleCritRate = 0;
+	} else {
+		int status;
+		int jid = UNIT_CLASS_ID(&bu->unit);
 
-	status = bu->unit.skl / 2;
+		status = (bu->unit.skl - 8) / 2;
+		if (status < 0)
+			status = 0;
 
 #if defined(SID_SuperLuck) && (COMMON_SKILL_VALID(SID_SuperLuck))
-	if (BattleFastSkillTester(bu, SID_SuperLuck))
-		status = bu->unit.lck;
+		if (BattleFastSkillTester(bu, SID_SuperLuck))
+			status = bu->unit.lck;
 #endif
 
 #if defined(SID_CriticalForce) && (COMMON_SKILL_VALID(SID_CriticalForce))
-	if (BattleFastSkillTester(bu, SID_CriticalForce))
-		status = bu->unit.skl + bu->unit.skl / 2;
+		if (BattleFastSkillTester(bu, SID_CriticalForce))
+			status = bu->unit.skl + bu->unit.skl / 2;
 #endif
 
-	status += GetItemCrit(bu->weapon);
-	status += gpCriticalBonus[jid];
+		status += itemCrit;
+		status += gpCriticalBonus[jid];
 
-	if (UNIT_CATTRIBUTES(&bu->unit) & CA_CRITBONUS)
-		status += gpKernelBattleDesignerConfig->critical_rate_bonus_attr;
+		if (UNIT_CATTRIBUTES(&bu->unit) & CA_CRITBONUS)
+			status += gpKernelBattleDesignerConfig->critical_rate_bonus_attr;
 
-	if (CheckClassCavalry(jid))
-		status += gpKernelBattleDesignerConfig->critical_rate_bonus_cavalry;
+		if (CheckClassCavalry(jid))
+			status += gpKernelBattleDesignerConfig->critical_rate_bonus_cavalry;
 
-	bu->battleCritRate = status;
+		bu->battleCritRate = status;
+	}
 }
 
 void PreBattleCalcInit(struct BattleUnit *attacker, struct BattleUnit *defender)
@@ -759,7 +740,7 @@ void PreBattleCalcSkills(struct BattleUnit *attacker, struct BattleUnit *defende
 
 #if (defined(SID_Wrath) && (COMMON_SKILL_VALID(SID_Wrath)))
 		case SID_Wrath:
-			if (attacker->unit.maxHP > (attacker->unit.curHP * 2))
+			if (attacker->hpInitial > (attacker->unit.curHP * 2))
 				attacker->battleCritRate += SKILL_EFF0(SID_Wrath);
 
 			break;
@@ -1399,10 +1380,10 @@ void PreBattleCalcAuraEffect(struct BattleUnit *attacker, struct BattleUnit *def
 				}
 #endif
 
-#if (defined(SID_LilysPoise) && (COMMON_SKILL_VALID(SID_LilysPoise)))
-				if (SkillTester(unit, SID_LilysPoise)) {
-					attacker->battleAttack  += SKILL_EFF0(SID_LilysPoise);
-					attacker->battleDefense += SKILL_EFF1(SID_LilysPoise);
+#if (defined(SID_VerdantPoise) && (COMMON_SKILL_VALID(SID_VerdantPoise)))
+				if (SkillTester(unit, SID_VerdantPoise)) {
+					attacker->battleAttack  += SKILL_EFF0(SID_VerdantPoise);
+					attacker->battleDefense += SKILL_EFF1(SID_VerdantPoise);
 				}
 #endif
 
@@ -1525,6 +1506,13 @@ void PreBattleCalcAuraEffect(struct BattleUnit *attacker, struct BattleUnit *def
 #if (defined(SID_Demoiselle) && (COMMON_SKILL_VALID(SID_Demoiselle)))
 				if (SkillTester(unit, SID_Demoiselle)  && !(UNIT_CATTRIBUTES(&attacker->unit) && CA_FEMALE))
 					attacker->battleDefense += SKILL_EFF0(SID_Demoiselle);
+#endif
+
+#if (defined(SID_BornLeader) && (COMMON_SKILL_VALID(SID_BornLeader)))
+				if (SkillTester(unit, SID_BornLeader)) {
+					attacker->battleHitRate += SKILL_EFF0(SID_BornLeader);
+					attacker->battleAttack  += SKILL_EFF1(SID_BornLeader);
+				}
 #endif
 			}
 
@@ -1729,12 +1717,6 @@ void ComputeBattleUnitStats(struct BattleUnit *attacker, struct BattleUnit *defe
 {
 	const PreBattleCalcFunc *it;
 
-	LTRACEF("Trace pre-battle: attacker=%p", attacker);
-
-	for (it = gpPreBattleCalcFuncs; *it; it++) {
-		LTRACEF("Trace attack: %d", attacker->battleAttack);
+	for (it = gpPreBattleCalcFuncs; *it; it++)
 		(*it)(attacker, defender);
-	}
-
-	LTRACE("Trace done");
 }

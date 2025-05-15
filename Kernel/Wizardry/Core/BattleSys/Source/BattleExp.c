@@ -3,6 +3,97 @@
 #include "battle-system.h"
 #include "bwl.h"
 #include "constants/skills.h"
+#include "KSDefinitions.h"
+
+#define BASE_KILL_EXP_AMOUNT 30
+#define BASE_CHIP_EXP_AMOUNT 10
+
+#define NORMAL_MODE_EXP_BONUS 12
+#define HARD_MODE_EXP_BONUS 6
+
+int GetDifficultyExpBonus() {
+	if (IS_EASY_MODE) // Playing on Normal mode
+		return NORMAL_MODE_EXP_BONUS;
+	else if (!(gPlaySt.chapterStateBits & PLAY_FLAG_HARD)) // Playing on Hard mode
+		return HARD_MODE_EXP_BONUS;
+	return 0;
+}
+
+int GetUnitChipExpAmount(struct Unit* actor, struct Unit* target) {
+	int result;
+	int levelDifference = GetUnitExpLevel(actor) - GetUnitExpLevel(target);
+
+	if (levelDifference > 0) // Unit is overleveled
+		result = BASE_CHIP_EXP_AMOUNT - (levelDifference * 2);
+	else if (levelDifference < 0) // Unit is underleveled
+		result = BASE_CHIP_EXP_AMOUNT - levelDifference;
+	else
+		result = BASE_CHIP_EXP_AMOUNT;
+
+	if (result < 0) 
+		result = 0;
+	if (result > 16)
+		result = 16;
+	
+	return result;
+}
+
+int GetUnitKillExpAmount(struct Unit* actor, struct Unit* target) {
+
+    if (target->curHP != 0) {
+        return 0;
+	}
+	
+	int levelDifference = GetUnitExpLevel(actor) - GetUnitExpLevel(target);
+	int result;
+	
+	if (levelDifference > 0)  // Unit is overeleveled
+		result =  BASE_KILL_EXP_AMOUNT - (((levelDifference + 3) * levelDifference) / 2);
+	else if (levelDifference < 0) // Unit is underleveled
+		result = BASE_KILL_EXP_AMOUNT + (((-levelDifference + 3) * -levelDifference) / 2);
+	else
+		result = BASE_KILL_EXP_AMOUNT;
+	
+	if (result > 75) {
+		result = 75;
+	}
+
+	result += GetDifficultyExpBonus();
+
+	result += GetUnitClassKillExpBonus(actor, target);
+
+	if (result < 1) {
+		result = 1;
+	}
+	
+	return result;
+}
+
+int GetBattleUnitExpGain_New(struct BattleUnit* actor, struct BattleUnit* target) {
+    int result;
+
+    if (!CanBattleUnitGainLevels(actor) || (actor->unit.curHP == 0) || UNIT_CATTRIBUTES(&target->unit) & CA_NEGATE_LETHALITY) {
+        return 0;
+	}
+
+    if (!actor->nonZeroDamage) {
+        return 0;
+	}
+	
+	result = GetUnitKillExpAmount(&actor->unit, &target->unit);
+	
+	if (result == 0)
+		result = GetUnitChipExpAmount(&actor->unit, &target->unit);
+
+    if (result > 100)
+        result = 100;
+
+    ModifyUnitSpecialExp(&actor->unit, &target->unit, &result);
+
+    return result;
+}
+
+
 
 LYN_REPLACE_CHECK(GetUnitExpLevel);
 int GetUnitExpLevel(struct Unit *unit)
@@ -48,7 +139,7 @@ STATIC_DECLAR int KernelModifyBattleUnitExp(int base, struct BattleUnit *actor, 
 
 int GetBattleUnitExpGainRework(struct BattleUnit *actor, struct BattleUnit *target)
 {
-	int result = GetBattleUnitExpGain(actor, target);
+	int result = GetBattleUnitExpGain_New(actor, target);
 
 	result = KernelModifyBattleUnitExp(result, actor, target);
 	ModifyUnitSpecialExp(&actor->unit, &target->unit, &result);

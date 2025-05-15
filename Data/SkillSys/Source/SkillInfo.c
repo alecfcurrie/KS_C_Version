@@ -1173,13 +1173,6 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
 	},
 #endif
 
-#if (defined(SID_LilysPoise) && COMMON_SKILL_VALID(SID_LilysPoise))
-	[SID_LilysPoise] = {
-		.desc = MSG_SKILL_LilysPoise,
-		.icon = GFX_SkillIcon_LilysPoise,
-	},
-#endif
-
 #if (defined(SID_Daunt) && COMMON_SKILL_VALID(SID_Daunt))
 	[SID_Daunt] = {
 		.desc = MSG_SKILL_Daunt,
@@ -3920,7 +3913,22 @@ const struct SkillInfo gSkillInfos[MAX_SKILL_NUM + 1] = {
 	[SID_DivineReprieve] = {
 		.name = MSG_MenuSkill_DivineReprieve_NAME,
 		.desc = MSG_MenuSkill_DivineReprieve_DESC,
-		.icon = GFX_SkillIcon_WIP,
+		.icon = GFX_SkillIcon_LilysPoise,
 	},
 #endif
+
+#if (defined(SID_BornLeader) && COMMON_SKILL_VALID(SID_BornLeader))
+	[SID_BornLeader] = {
+		.desc = MSG_SKILL_BornLeader,
+		.icon = GFX_SkillIcon_Charisma,
+	},
+#endif
+
+#if (defined(SID_VerdantPoise) && COMMON_SKILL_VALID(SID_VerdantPoise))
+	[SID_VerdantPoise] = {
+		.desc = MSG_SKILL_VerdantPoise,
+		.icon = GFX_SkillIcon_LilysPoise,
+	},
+#endif
+
 };

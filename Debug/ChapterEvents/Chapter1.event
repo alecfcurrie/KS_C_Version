@@ -1,0 +1,407 @@
+
+////////////////////////////////////////////////////
+//                                                //
+// Disassembled with Nintenlord's Event Assembler //
+// Version: 11.0.0.0                              //
+// Game: FE8                                      //
+// File: FE8_clean.gba                            //
+// Offset: $9EC66C                                //
+//                                                //
+////////////////////////////////////////////////////
+
+
+EventPointerTable(0x7, PointerList)
+
+setText(0x160, NewChName)
+
+#define VillageCloseCH1 2
+#define VillageCoords [7,3]
+
+// TODO DELETE ME!!
+#define SetAI_ID(unitid,ai1,ai2,ai3,ai4) "SVAL 0x1 ai1|(ai2<<8)|(ai3<<16)|(ai4<<24); CHAI unitid"
+#define SetAI_Pos(x,y,ai1,ai2,ai3,ai4) "SVAL 0x1 ai1|(ai2<<8)|(ai3<<16)|(ai4<<24); CHAI [x,y]"
+
+ALIGN 4
+NewChName:
+String("Chapter 1: Canyon Rush")
+BYTE 0
+
+ALIGN 4
+PointerList:
+POIN TurnBasedEvents
+POIN CharacterBasedEvents
+POIN LocationBasedEvents
+POIN MiscBasedEvents
+POIN Dunno1 Dunno2 Dunno3 Tutorial
+POIN Traps1 Traps2
+POIN AudreyWesley AudreyWesley  //This unit group determines the number and position of deployment slots when there is a prep screen
+POIN $0 $0 $0
+POIN $0 $0 $0
+POIN BeginningScene EndingScene
+
+TurnBasedEvents:
+TurnEventPlayer(0x00, Turn2_PP, 2)
+TurnEventPlayer(0x00, Turn3_PP, 3)
+TurnEventEnemy(0x00, Turn1_EP, 1)
+TurnEventEnemy(0x00, Turn2_EP, 2)
+TurnEventEnemy(0x00, Turn3_EP, 3)
+TurnEventEnemy(0x00, Turn4_EP, 4)
+TurnEventEnemy(0x00, Turn5_EP, 5)
+TurnEventEnemy(0x00, Turn6_EP, 6)
+END_MAIN
+
+LocationBasedEvents:
+END_MAIN
+
+MiscBasedEvents:
+CauseGameOverIfLordDies
+DefeatAll(EndingScene) 
+END_MAIN
+
+CharacterBasedEvents:
+END_MAIN
+
+Dunno1:
+END_MAIN
+
+Dunno2:
+END_MAIN
+
+Dunno3:
+END_MAIN
+
+Tutorial:
+END_MAIN
+
+Traps1:
+ENDTRAP
+ALIGN 4
+
+Traps2:
+ENDTRAP
+ALIGN 4
+
+//==================================================================//
+//==============================UNITS===============================//
+//==================================================================//
+
+AudreyWesley:
+UNIT CHARACTER_AUDREY CLASS_PRINCESS_F CHARACTER_AUDREY Level(1, Ally, False) [8,18] 0x0 0x0 0x1 REDA8R17 [ITEM_SWORD_BRONZE, ITEM_VULNERARY] NoAI
+UNIT CHARACTER_WESLEY CLASS_AXE_CAVALIER_M CHARACTER_AUDREY Level(3, Ally, False)  [9,18] 0x0 0x0 0x1 REDA9R17 [ITEM_AXE_BRONZE] NoAI
+UNIT
+
+FriendlyReinforcements1:
+UNIT CHARACTER_OSBORNE CLASS_PRIEST_M CHARACTER_AUDREY Level(4, Ally, False)  [8,18] 0x0 0x0 0x1 REDA8R17 [ITEM_LIGHT_LIGHTNING, ITEM_STAFF_HEAL, ITEM_VULNERARY] NoAI
+UNIT CHARACTER_ELAINE CLASS_SOLDIER_F CHARACTER_AUDREY Level(2, Ally, False) [9,18] 0x0 0x0 0x1 REDA9R17 [ITEM_LANCE_IRON, ITEM_LANCE_JAVELIN, ITEM_VULNERARY] NoAI
+UNIT
+
+
+FriendlyReinforcements2:
+UNIT CHARACTER_CORDELL CLASS_ARCHER_M CHARACTER_AUDREY Level(5, Ally, False) [9,18] 0x0 0x0 0x1 REDA9R17 [ITEM_BOW_BRONZE, ITEM_BOW_STEEL, ITEM_VULNERARY] NoAI
+UNIT CHARACTER_SURGE CLASS_FIGHTER_M CHARACTER_AUDREY Level(1, Ally, False) [8,18] 0x0 0x0 0x1 REDA8R17 [ITEM_AXE_BRONZE, ITEM_VULNERARY] NoAI
+UNIT
+
+
+BossGroup:
+UNIT CHARACTER_FESTER CLASS_SWORDFIGHTER_M CHARACTER_GLOVE Level(5, Enemy, False) [0,10] 0x0 0x0 0x1 REDA7R4 [ITEM_SWORD_IRON] AttackInRangeAI
+UNIT CHARACTER_GLOVE CLASS_FIGHTER_M CHARACTER_GLOVE Level(3, Enemy, False) [1,11] DropItem 0x0 0x1 REDA8R4 [ITEM_AXE_IRON, ITEM_VULNERARY] AttackInRangeAI
+UNIT
+
+Turn2Cutscene:
+UNIT CHARACTER_FESTER CLASS_SWORDFIGHTER_M CHARACTER_GLOVE Level(5, Enemy, False) [7,3] 0x0 0x0 0x1 REDA7R4 [ITEM_SWORD_IRON] NoAI
+UNIT CHARACTER_JYRI CLASS_SWORDFIGHTER_M CHARACTER_GLOVE Level(1, NPC, False) [7,3] 0x0 0x0 0x1 REDA8R4 [0x0] NoAI
+UNIT CHARACTER_LIEV CLASS_SWORDFIGHTER_M CHARACTER_GLOVE Level(1, NPC, False) [7,3] 0x0 0x0 0x1 REDA8R5 [0x0] NoAI
+UNIT
+
+EnemyUnits:
+// Lower Central Group
+UNIT 0x80 CLASS_FIGHTER_M CHARACTER_AUDREY Level(1, Enemy, True) [10,0] 0x0 0x0 0x1 REDA8R9 [ITEM_AXE_BRONZE] [0x0,0x00,NoRecovery,0x0]
+UNIT 0x80 CLASS_FIGHTER_M CHARACTER_AUDREY Level(1, Enemy, True) [11,0] 0x0 0x0 0x1 REDA9R9 [ITEM_AXE_BRONZE] [0x0,0x00,NoRecovery,0x0]
+// Wall Breakers
+UNIT 0x80 CLASS_SWORDFIGHTER_M CHARACTER_AUDREY Level(1, Enemy, True) [17,11] 0x0 0x0 0x1 REDA15R13 [ITEM_SWORD_BRONZE] [0x0,0xE,0xC,0x0]
+UNIT 0x80 CLASS_SWORDFIGHTER_M CHARACTER_AUDREY Level(1, Enemy, True) [16,14] 0x0 0x0 0x0 0x0 [ITEM_SWORD_BRONZE] [0x0,0xE,0xC,0x0]
+UNIT 0x80 CLASS_FIGHTER_M CHARACTER_AUDREY Level(1, Enemy, True) [0,10] 0x0 0x0 0x1 REDA3R12 [ITEM_AXE_BRONZE] [0x0,0xE,0xC,0x0]
+UNIT 0x80 CLASS_OUTLAW_M CHARACTER_AUDREY Level(1, Enemy, True) [0,11] 0x0 0x0 0x1 REDA3R11 [ITEM_BOW_BRONZE] [0x0,0xE,0xC,0x0]
+// Middle Central Group
+UNIT 0x80 CLASS_FIGHTER_M CHARACTER_AUDREY Level(1, Enemy, True) [10,0] 0x0 0x0 0x1 REDA9R4 [ITEM_AXE_BRONZE] AttackInRangeAI
+UNIT 0x80 CLASS_FIGHTER_M CHARACTER_AUDREY Level(1, Enemy, True) [11,0] 0x0 0x0 0x1 REDA10R5 [ITEM_AXE_BRONZE] AttackInRangeAI
+// Upper Central Group
+UNIT 0x80 CLASS_SWORDFIGHTER_M CHARACTER_AUDREY Level(1, Enemy, True) [10,0] 0x0 0x0 0x1 REDA11R3 [ITEM_SWORD_BRONZE] AttackInRangeAI
+UNIT 0x80 CLASS_SWORDFIGHTER_M CHARACTER_AUDREY Level(1, Enemy, True) [11,0] 0x0 0x0 0x1 REDA10R2 [ITEM_SWORD_BRONZE] AttackInRangeAI
+// Bottom Right Group
+UNIT 0x80 CLASS_SWORDFIGHTER_M CHARACTER_AUDREY Level(1, Enemy, True) [18,11] 0x0 0x0 0x1 REDA16R12 [ITEM_SWORD_BRONZE] AttackInRangeAI
+UNIT 0x80 CLASS_OUTLAW_M CHARACTER_AUDREY Level(1, Enemy, True) [18,10] 0x0 0x0 0x1 REDA17R12 [ITEM_BOW_BRONZE] AttackInRangeAI
+// Upper Right Group
+UNIT 0x80 CLASS_OUTLAW_M CHARACTER_AUDREY Level(1, Enemy, True) [18,11] 0x0 0x0 0x1 REDA16R7 [ITEM_BOW_BRONZE] AttackInRangeAI
+UNIT 0x80 CLASS_FIGHTER_M CHARACTER_AUDREY Level(1, Enemy, True) [18,10] 0x0 0x0 0x1 REDA16R8 [ITEM_AXE_BRONZE] AttackInRangeAI
+// Bottom Left Group
+UNIT 0x80 CLASS_FIGHTER_M CHARACTER_AUDREY Level(1, Enemy, True) [0,10] 0x0 0x0 0x1 REDA1R11 [ITEM_AXE_BRONZE] AttackInRangeAI
+UNIT 0x80 CLASS_FIGHTER_M CHARACTER_AUDREY Level(1, Enemy, True) [0,11] 0x0 0x0 0x1 REDA2R10 [ITEM_AXE_BRONZE] AttackInRangeAI 
+// Upper Left Group
+UNIT 0x80 CLASS_OUTLAW_M CHARACTER_AUDREY Level(1, Enemy, True) [0,11] 0x0 0x0 0x1 REDA1R9 [ITEM_BOW_BRONZE] AttackInRangeAI
+UNIT
+
+EndingCutsceneUnits1:
+UNIT CHARACTER_AUDREY CLASS_PRINCESS_F CHARACTER_AUDREY Level(1, Ally, False) [8,5] 0x0 0x0 0x0 0x0 [0x0] NoAI
+UNIT CHARACTER_WESLEY CLASS_PRINCESS_F CHARACTER_AUDREY Level(3, Ally, False)  [8,7] 0x0 0x0 0x0 0x0 [0x0] NoAI
+UNIT CHARACTER_OSBORNE CLASS_PRINCESS_F CHARACTER_AUDREY Level(4, Ally, False)  [9,4] 0x0 0x0 0x0 0x0 [0x0] NoAI
+UNIT CHARACTER_ELAINE CLASS_PRINCESS_F CHARACTER_AUDREY Level(2, Ally, False) [9,6] 0x0 0x0 0x0 0x0 [0x0] NoAI
+UNIT CHARACTER_CORDELL CLASS_PRINCESS_F CHARACTER_AUDREY Level(5, Ally, False) [8,4] 0x0 0x0 0x0 0x0 [0x0] NoAI
+UNIT CHARACTER_SURGE CLASS_PRINCESS_F CHARACTER_AUDREY Level(1, Ally, False) [10,5] 0x0 0x0 0x0 0x0 [0x0] NoAI
+UNIT
+
+EndingCutsceneUnits2:
+UNIT CHARACTER_AUDREY CLASS_PRINCESS_F CHARACTER_AUDREY Level(1, Ally, False) [7,3] 0x0 0x0 0x1 REDA8R4 [0x0] NoAI
+UNIT CHARACTER_OSBORNE CLASS_PRINCESS_F CHARACTER_AUDREY Level(4, Ally, False)  [7,3] 0x0 0x0 0x1 REDA8R5 [0x0] NoAI
+UNIT CHARACTER_CORDELL CLASS_PRINCESS_F CHARACTER_AUDREY Level(5, Ally, False) [7,3] 0x0 0x0 0x1 REDA7R4 [0x0] NoAI
+UNIT
+
+OsmaEnd:
+UNIT CHARACTER_OSMA CLASS_SWORDFIGHTER_F CHARACTER_AUDREY Level(5, NPC, False) [7,3] 0x0 0x0 0x1 REDA7R5 [0x0] NoAI
+UNIT
+
+//==================================================================//
+//=============================EVENTS===============================//
+//==================================================================//
+
+
+BeginningScene:
+
+GOTO 5
+
+MUSC Raid
+LOAD1 0x1 BossGroup
+ENUN
+
+CURSOR CHARACTER_FESTER
+STAL 60
+REMOVE_CURSORS
+SetBackground(Outside_Village_Day)
+Text(Chapter1InitialConvo1)
+EndConvo
+
+MOVE 0x0 CHARACTER_FESTER [7,3]
+ENUN
+TILECHANGE VillageCloseCH1
+RemoveUnit CHARACTER_FESTER
+MOVE 0x0 CHARACTER_GLOVE [7,4]
+ENUN
+STAL 30
+Text(Chapter1InitialConvo2)
+MOVE 0x0 CHARACTER_GLOVE [5,4]
+ENUN
+
+LOAD1 0x1 EnemyUnits
+ENUN
+
+CAMERA [8,18]
+MUSC Tension
+LOAD1 0x1 AudreyWesley
+ENUN
+
+CURSOR CHARACTER_AUDREY
+STAL 60
+REMOVE_CURSORS
+SetBackground(Woodland)
+Text(Chapter1InitialConvo3)
+EndConvo
+
+EvtBuffWeapons(ITEM_AXE_IRON, ITEM_AXE_STEEL)
+EvtBuffWeapons(ITEM_AXE_BRONZE, ITEM_AXE_IRON)
+EvtBuffWeapons(ITEM_SWORD_BRONZE, ITEM_SWORD_IRON)
+EvtBuffWeapons(ITEM_BOW_BRONZE, ITEM_BOW_IRON)
+
+LABEL 5
+MNC2 40
+NoFade
+ENDA
+NoFade
+ENDA
+
+Turn1_EP:
+CAMERA_CENTERED [7,5]
+MUSC Raid
+STAL 30
+CURSOR [7,3]
+STAL 60
+REMOVE_CURSORS
+SetBackground(Town_Day)
+Text(Chapter1Turn1EP)
+EndConvo
+NoFade
+ENDA
+
+Turn2_EP:
+
+// Cutscene
+CAMERA_CENTERED [7,5]
+MUSC Raid
+STAL 30
+TILEREVERT VillageCloseCH1
+LOAD1 0x1 Turn2Cutscene
+ENUN
+TILECHANGE VillageCloseCH1
+MOVE 0x0 CHARACTER_GLOVE [5,4]
+ENUN
+
+CURSOR CHARACTER_FESTER
+STAL 60
+REMOVE_CURSORS
+Text(Chapter1Turn2EP1)
+
+MOVEONTO 0x0 CHARACTER_JYRI CHARACTER_FESTER
+ENUN
+RemoveUnit CHARACTER_JYRI
+MOVEONTO 0x0 CHARACTER_LIEV CHARACTER_FESTER
+ENUN
+RemoveUnit CHARACTER_LIEV
+STAL 10
+
+MOVE 0x0 CHARACTER_FESTER [11,1]
+MOVE 0x0 CHARACTER_GLOVE [6,4]
+ENUN
+
+CAMERA_CENTERED [11,5]
+STAL 60
+Text(Chapter1Turn2EP2)
+
+STAL 25
+MOVE 0x0 CHARACTER_FESTER [11,0]
+ENUN
+RemoveUnit CHARACTER_FESTER
+
+// Activate Middle Central Group
+SetAI_Pos(9,4,0,0,0xC,0)
+SetAI_Pos(10,5,0,0,0xC,0)
+NoFade
+ENDA
+
+
+Turn3_EP:
+// Cutscene
+CAMERA_CENTERED [7,5]
+MUSC Raid
+STAL 30
+CURSOR [7,3]
+STAL 60
+REMOVE_CURSORS
+SetBackground(Town_Day)
+Text(Chapter1Turn3EP)
+EndConvo
+NoFade
+ENDA
+
+// Activate Bottom Right Group
+SetAI_Pos(16,12,0,0,0xC,0)
+SetAI_Pos(17,12,0,0,0xC,0)
+// Activate Bottom Left
+SetAI_Pos(1, 11,0,0,0xC,0)
+SetAI_Pos(2,10,0,0,0xC,0)
+NoFade
+ENDA
+
+
+Turn4_EP:
+// Activate Upper Central Group
+SetAI_Pos(11,3,0,0,0xC,0)
+SetAI_Pos(10,2,0,0,0xC,0)
+NoFade
+ENDA
+
+
+Turn5_EP:
+// Activate Upper Left Group
+SetAI_Pos(1,10,0,0,0xC,0)
+SetAI_Pos(1, 9,0,0,0xC,0)
+// Activate Upper Right
+SetAI_Pos(16,7,0,0,0xC,0)
+SetAI_Pos(16,8,0,0,0xC,0)
+SetAI_Pos(16,9,0,0,0xC,0)
+NoFade
+ENDA
+
+
+Turn6_EP:
+// Activate Glove		
+SetAI_Pos(5,4,0,0,0xC,0)				
+NoFade
+ENDA
+
+
+Turn2_PP:
+CAMERA CHARACTER_AUDREY
+CURSOR CHARACTER_AUDREY
+STAL 60
+REMOVE_CURSORS
+StartText(Chapter1Turn2PP1)
+MUSC 0x0
+ContinueText
+REMA
+CAMERA [8,18]
+MUSC Comrades
+LOAD1 0x0 FriendlyReinforcements1
+ENUN
+Text(Chapter1Turn2PP2)
+NoFade
+ENDA
+
+
+Turn3_PP:
+CAMERA [8,18]
+MUSC Comrades
+LOAD1 0x0 FriendlyReinforcements2
+ENUN
+Text(Chapter1Turn3PP)
+NoFade
+ENDA
+
+EndingScene:
+// Starting Scene
+MUSC Into_the_Shadow_of_Victory
+FADI 4
+REMOVEALL_BLUE
+REMOVEALL_RED
+LOAD1 0x2 EndingCutsceneUnits1
+ENUN
+CAMERA_CENTERED [8,5]
+FADU 4
+Text(Chapter1EndingConvo1)
+TILEREVERT VillageCloseCH1
+MOVE 0x0 CHARACTER_AUDREY VillageCoords
+ENUN
+RemoveUnit CHARACTER_AUDREY
+MOVE 0x0 CHARACTER_CORDELL VillageCoords
+ENUN
+RemoveUnit CHARACTER_CORDELL
+MOVE 0x0 CHARACTER_OSBORNE VillageCoords
+ENUN
+RemoveUnit CHARACTER_OSBORNE
+
+// Village Scene
+SetBackground(Town_Day)
+Text(Chapter1EndingConvo2)
+EndConvo
+
+// Post-Village Scene
+LOAD1 0x2 EndingCutsceneUnits2
+ENUN
+MOVE 0x0 CHARACTER_WESLEY [9,4]
+ENUN
+StartText(Chapter1EndingConvo3)
+MUSC 0x0
+ContinueText
+REMA
+LOAD1 0x0 OsmaEnd
+ENUN
+MUSC Comrades
+StartText(Chapter1EndingConvo4)
+CUSA CHARACTER_OSMA;
+EndConvo
+FADI 4
+
+ASMC 0x85C71 0x381F5 0x37CF9 //show records screen
+STAL 120
+EVBIT_F 0x2
+MNTS 0x1 //return to title screen
+NoFade
+ENDA

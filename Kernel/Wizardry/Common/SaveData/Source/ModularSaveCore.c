@@ -154,6 +154,36 @@ void CopyGameSave(int index_src, int index_dst)
 	WriteSaveBlockInfo(&chunk, index_dst);
 }
 
+LYN_REPLACE_CHECK(InitPlayConfig);
+void InitPlayConfig(int isDifficult, s8 isTutorial) {
+
+	CpuFill16(0, &gPlaySt, sizeof(gPlaySt));
+
+    gPlaySt.chapterIndex = 0;
+
+    if (isDifficult)
+        gPlaySt.chapterStateBits |= PLAY_FLAG_HARD;
+
+    gPlaySt.config.controller = isTutorial; // Redundant??
+    gPlaySt.config.animationType = 0;
+    gPlaySt.config.disableTerrainDisplay = 0;
+    gPlaySt.config.unitDisplayType = 0;
+    gPlaySt.config.autoCursor = 0;
+    gPlaySt.config.textSpeed = 2; 
+    gPlaySt.config.gameSpeed = 1;
+    gPlaySt.config.disableBgm = 0;
+    gPlaySt.config.disableSoundEffects = 0;
+    gPlaySt.config.windowColor = 0;
+    gPlaySt.config.disableAutoEndTurns = 0;
+    gPlaySt.config.noSubtitleHelp = 0;
+    gPlaySt.config.battleForecastType = 0;
+    gPlaySt.config.debugControlRed = 0;
+    gPlaySt.config.debugControlGreen = 0;
+    gPlaySt.config.unitColor = 0;
+    gPlaySt.config.unk41_5 = 0;
+}
+
+
 LYN_REPLACE_CHECK(WriteNewGameSave);
 void WriteNewGameSave(int index, int isDifficult, int mode, int isTutorial)
 {

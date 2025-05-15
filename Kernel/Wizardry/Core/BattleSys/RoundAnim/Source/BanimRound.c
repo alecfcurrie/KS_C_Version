@@ -2,65 +2,66 @@
 #include <strmag.h>
 #include <battle-system.h>
 #include <combo-attack.h>
+#include "KSDefinitions.h"
 
 #define LOCAL_TRACE 0
 
 extern u16 const *const gpFarAttackAnimItems;
 
 STATIC_DECLAR const u16 round_types_normal_phy[EKR_DISTANCE_MAX] = {
-	[EKR_DISTANCE_CLOSE]       = ANIM_ROUND_HIT_CLOSE,
-	[EKR_DISTANCE_FAR]         = ANIM_ROUND_NONCRIT_FAR,
-	[EKR_DISTANCE_FARFAR]      = ANIM_ROUND_NONCRIT_FAR,
-	[EKR_DISTANCE_MONOCOMBAT]  = ANIM_ROUND_HIT_CLOSE,
-	[EKR_DISTANCE_PROMOTION]   = ANIM_ROUND_HIT_CLOSE
+	[EKR_DISTANCE_CLOSE] = ANIM_ROUND_HIT_CLOSE,
+	[EKR_DISTANCE_FAR] = ANIM_ROUND_NONCRIT_FAR,
+	[EKR_DISTANCE_FARFAR] = ANIM_ROUND_NONCRIT_FAR,
+	[EKR_DISTANCE_MONOCOMBAT] = ANIM_ROUND_HIT_CLOSE,
+	[EKR_DISTANCE_PROMOTION] = ANIM_ROUND_HIT_CLOSE
 };
 
 STATIC_DECLAR const u16 round_types_normal_mag[EKR_DISTANCE_MAX] = {
-	[EKR_DISTANCE_CLOSE]       = ANIM_ROUND_NONCRIT_FAR,
-	[EKR_DISTANCE_FAR]         = ANIM_ROUND_NONCRIT_FAR,
-	[EKR_DISTANCE_FARFAR]      = ANIM_ROUND_NONCRIT_FAR,
-	[EKR_DISTANCE_MONOCOMBAT]  = ANIM_ROUND_HIT_CLOSE,
-	[EKR_DISTANCE_PROMOTION]   = ANIM_ROUND_HIT_CLOSE
+	[EKR_DISTANCE_CLOSE] = ANIM_ROUND_NONCRIT_FAR,
+	[EKR_DISTANCE_FAR] = ANIM_ROUND_NONCRIT_FAR,
+	[EKR_DISTANCE_FARFAR] = ANIM_ROUND_NONCRIT_FAR,
+	[EKR_DISTANCE_MONOCOMBAT] = ANIM_ROUND_HIT_CLOSE,
+	[EKR_DISTANCE_PROMOTION] = ANIM_ROUND_HIT_CLOSE
 };
 
 STATIC_DECLAR const u16 round_types_crital_phy[EKR_DISTANCE_MAX] = {
-	[EKR_DISTANCE_CLOSE]       = ANIM_ROUND_CRIT_CLOSE,
-	[EKR_DISTANCE_FAR]         = ANIM_ROUND_CRIT_FAR,
-	[EKR_DISTANCE_FARFAR]      = ANIM_ROUND_CRIT_FAR,
-	[EKR_DISTANCE_MONOCOMBAT]  = ANIM_ROUND_CRIT_CLOSE,
-	[EKR_DISTANCE_PROMOTION]   = ANIM_ROUND_CRIT_CLOSE
+	[EKR_DISTANCE_CLOSE] = ANIM_ROUND_CRIT_CLOSE,
+	[EKR_DISTANCE_FAR] = ANIM_ROUND_CRIT_FAR,
+	[EKR_DISTANCE_FARFAR] = ANIM_ROUND_CRIT_FAR,
+	[EKR_DISTANCE_MONOCOMBAT] = ANIM_ROUND_CRIT_CLOSE,
+	[EKR_DISTANCE_PROMOTION] = ANIM_ROUND_CRIT_CLOSE
 };
 
 STATIC_DECLAR const u16 round_types_crital_mag[EKR_DISTANCE_MAX] = {
-	[EKR_DISTANCE_CLOSE]       = ANIM_ROUND_CRIT_FAR,
-	[EKR_DISTANCE_FAR]         = ANIM_ROUND_CRIT_FAR,
-	[EKR_DISTANCE_FARFAR]      = ANIM_ROUND_CRIT_FAR,
-	[EKR_DISTANCE_MONOCOMBAT]  = ANIM_ROUND_CRIT_CLOSE,
-	[EKR_DISTANCE_PROMOTION]   = ANIM_ROUND_CRIT_CLOSE
+	[EKR_DISTANCE_CLOSE] = ANIM_ROUND_CRIT_FAR,
+	[EKR_DISTANCE_FAR] = ANIM_ROUND_CRIT_FAR,
+	[EKR_DISTANCE_FARFAR] = ANIM_ROUND_CRIT_FAR,
+	[EKR_DISTANCE_MONOCOMBAT] = ANIM_ROUND_CRIT_CLOSE,
+	[EKR_DISTANCE_PROMOTION] = ANIM_ROUND_CRIT_CLOSE
 };
 
 STATIC_DECLAR const u16 round_types_miss_phy[EKR_DISTANCE_MAX] = {
-	[EKR_DISTANCE_CLOSE]       = ANIM_ROUND_MISS_CLOSE,
-	[EKR_DISTANCE_FAR]         = ANIM_ROUND_NONCRIT_FAR,
-	[EKR_DISTANCE_FARFAR]      = ANIM_ROUND_NONCRIT_FAR,
-	[EKR_DISTANCE_MONOCOMBAT]  = ANIM_ROUND_MISS_CLOSE,
-	[EKR_DISTANCE_PROMOTION]   = ANIM_ROUND_MISS_CLOSE
+	[EKR_DISTANCE_CLOSE] = ANIM_ROUND_MISS_CLOSE,
+	[EKR_DISTANCE_FAR] = ANIM_ROUND_NONCRIT_FAR,
+	[EKR_DISTANCE_FARFAR] = ANIM_ROUND_NONCRIT_FAR,
+	[EKR_DISTANCE_MONOCOMBAT] = ANIM_ROUND_MISS_CLOSE,
+	[EKR_DISTANCE_PROMOTION] = ANIM_ROUND_MISS_CLOSE
 };
 
 STATIC_DECLAR const u16 defender_round_types_dodge[EKR_DISTANCE_MAX] = {
-	[EKR_DISTANCE_CLOSE]       = ANIM_ROUND_TAKING_MISS_CLOSE,
-	[EKR_DISTANCE_FAR]         = ANIM_ROUND_TAKING_MISS_FAR,
-	[EKR_DISTANCE_FARFAR]      = ANIM_ROUND_TAKING_MISS_FAR,
-	[EKR_DISTANCE_MONOCOMBAT]  = ANIM_ROUND_TAKING_MISS_CLOSE,
-	[EKR_DISTANCE_PROMOTION]   = ANIM_ROUND_TAKING_MISS_CLOSE
+	[EKR_DISTANCE_CLOSE] = ANIM_ROUND_TAKING_MISS_CLOSE,
+	[EKR_DISTANCE_FAR] = ANIM_ROUND_TAKING_MISS_FAR,
+	[EKR_DISTANCE_FARFAR] = ANIM_ROUND_TAKING_MISS_FAR,
+	[EKR_DISTANCE_MONOCOMBAT] = ANIM_ROUND_TAKING_MISS_CLOSE,
+	[EKR_DISTANCE_PROMOTION] = ANIM_ROUND_TAKING_MISS_CLOSE
 };
 
 STATIC_DECLAR const u16 defender_round_types_hitted[EKR_DISTANCE_MAX] = {
-	[EKR_DISTANCE_CLOSE]       = ANIM_ROUND_TAKING_HIT_CLOSE,
-	[EKR_DISTANCE_FAR]         = ANIM_ROUND_TAKING_HIT_FAR,
-	[EKR_DISTANCE_FARFAR]      = ANIM_ROUND_TAKING_HIT_FAR,
-	[EKR_DISTANCE_MONOCOMBAT]  = ANIM_ROUND_TAKING_HIT_CLOSE,
-	[EKR_DISTANCE_PROMOTION]   = ANIM_ROUND_TAKING_HIT_CLOSE
+	[EKR_DISTANCE_CLOSE] = ANIM_ROUND_TAKING_HIT_CLOSE,
+	[EKR_DISTANCE_FAR] = ANIM_ROUND_TAKING_HIT_FAR,
+	[EKR_DISTANCE_FARFAR] = ANIM_ROUND_TAKING_HIT_FAR,
+	[EKR_DISTANCE_MONOCOMBAT] = ANIM_ROUND_TAKING_HIT_CLOSE,
+	[EKR_DISTANCE_PROMOTION] = ANIM_ROUND_TAKING_HIT_CLOSE
 };
 
 STATIC_DECLAR bool CheckForceFarAttackAnimItem(int weapon)
@@ -68,7 +69,7 @@ STATIC_DECLAR bool CheckForceFarAttackAnimItem(int weapon)
 	int i;
 	int iid = ITEM_INDEX(weapon);
 
-	for (i = 0; ; i++) {
+	for (i = 0;; i++) {
 		int ref_item = gpFarAttackAnimItems[i];
 
 		if (ref_item == ITEM_NONE)
@@ -88,14 +89,15 @@ void ParseBattleHitToBanimCmd(void)
 	int distance_modes[2];
 	int hplut_offs[2];
 
-	#define HpLutAdvance(__pos, __chg) \
-	do { \
+#define HpLutAdvance(__pos, __chg)                                             \
+	do {                                                                   \
 		new_hp = gEfxHpLutRe[hplut_offs[__pos] * 2 + __pos] + (__chg); \
-		if (new_hp < 0) \
-			new_hp = 0; \
-		hplut_offs[__pos]++; \
-		gEfxHpLutRe[hplut_offs[__pos] * 2 + __pos] = new_hp; \
-		LTRACEF("pos=%d, off=%d, hp=%d", __pos, hplut_offs[__pos], new_hp); \
+		if (new_hp < 0)                                                \
+			new_hp = 0;                                            \
+		hplut_offs[__pos]++;                                           \
+		gEfxHpLutRe[hplut_offs[__pos] * 2 + __pos] = new_hp;           \
+		LTRACEF("pos=%d, off=%d, hp=%d", __pos, hplut_offs[__pos],     \
+			new_hp);                                               \
 	} while (0)
 
 	for (i = 0; i < ARRAY_COUNT(gAnimRoundDataRe); i++)
@@ -109,7 +111,8 @@ void ParseBattleHitToBanimCmd(void)
 
 	if (gEkrDistanceType == EKR_DISTANCE_PROMOTION) {
 		/* Promotion */
-		gAnimRoundDataRe[POS_L] = gAnimRoundDataRe[POS_R] = ANIM_ROUND_TAKING_MISS_CLOSE;
+		gAnimRoundDataRe[POS_L] = gAnimRoundDataRe[POS_R] =
+			ANIM_ROUND_TAKING_MISS_CLOSE;
 		return;
 	}
 
@@ -121,10 +124,12 @@ void ParseBattleHitToBanimCmd(void)
 
 	distance_modes[POS_L] = distance_modes[POS_R] = gEkrDistanceType;
 	if (gEkrDistanceType == EKR_DISTANCE_CLOSE) {
-		if (CheckForceFarAttackAnimItem(gpEkrBattleUnitLeft->weaponBefore))
+		if (CheckForceFarAttackAnimItem(
+			    gpEkrBattleUnitLeft->weaponBefore))
 			distance_modes[POS_L] = EKR_DISTANCE_FAR;
 
-		if (CheckForceFarAttackAnimItem(gpEkrBattleUnitRight->weaponBefore))
+		if (CheckForceFarAttackAnimItem(
+			    gpEkrBattleUnitRight->weaponBefore))
 			distance_modes[POS_R] = EKR_DISTANCE_FAR;
 	}
 
@@ -134,7 +139,8 @@ void ParseBattleHitToBanimCmd(void)
 	for (i = 0; i < NEW_BATTLE_HIT_MAX; i++) {
 		int attacker_pos, defender_pos;
 		struct BattleUnit *actor;
-		struct BattleHit *hit = prBattleHitArray + i * BattleHitArrayWidth;
+		struct BattleHit *hit =
+			prBattleHitArray + i * BattleHitArrayWidth;
 		struct ExtBattleHit *exthit = gExtBattleHitArray + i;
 		u16 *anim_round = gAnimRoundDataRe + i * 2;
 		u16 distance_modes_cur[2];
@@ -155,7 +161,8 @@ void ParseBattleHitToBanimCmd(void)
 		 *
 		 * The vanilla function GetBanimAllyPosition() is also wrong named, which should be "GetBanimBattleActorPosition"
 		 */
-		if (!!gBanimPositionIsEnemy[POS_L] == !!(hit->info & BATTLE_HIT_INFO_RETALIATION)) {
+		if (!!gBanimPositionIsEnemy[POS_L] ==
+		    !!(hit->info & BATTLE_HIT_INFO_RETALIATION)) {
 			attacker_pos = POS_L;
 			defender_pos = POS_R;
 			actor = gpEkrBattleUnitLeft;
@@ -181,17 +188,21 @@ void ParseBattleHitToBanimCmd(void)
 		 */
 		if (gpKernelDesigerConfig->combo_attack_en) {
 			if (i < COMBO_ATK_MAX) {
-				struct ComboAtkTarget *combo = &gComboAtkList[i];
+				struct ComboAtkTarget *combo =
+					&gComboAtkList[i];
 
 				if (combo->uid != COMBO_ATK_UID_INVALID) {
 					int weapon = combo->weapon;
 
-					magic_attack = IsMagicAttackAttr(GetItemAttributes(weapon));
+					magic_attack = IsMagicAttackAttr(
+						GetItemAttributes(weapon));
 
 					if (CheckForceFarAttackAnimItem(weapon))
-						distance_modes_cur[attacker_pos] = EKR_DISTANCE_FAR;
+						distance_modes_cur[attacker_pos] =
+							EKR_DISTANCE_FAR;
 					else
-						distance_modes_cur[attacker_pos] = gEkrDistanceType;
+						distance_modes_cur[attacker_pos] =
+							gEkrDistanceType;
 				}
 			}
 		}
@@ -202,14 +213,18 @@ void ParseBattleHitToBanimCmd(void)
 		 */
 		if (hit->attributes & BATTLE_HIT_ATTR_CRIT) {
 			if (!magic_attack)
-				anim_round[attacker_pos] = round_types_crital_phy[distance_modes_cur[attacker_pos]];
+				anim_round[attacker_pos] = round_types_crital_phy
+					[distance_modes_cur[attacker_pos]];
 			else
-				anim_round[attacker_pos] = round_types_crital_mag[distance_modes_cur[attacker_pos]];
+				anim_round[attacker_pos] = round_types_crital_mag
+					[distance_modes_cur[attacker_pos]];
 		} else {
 			if (!magic_attack)
-				anim_round[attacker_pos] = round_types_normal_phy[distance_modes_cur[attacker_pos]];
+				anim_round[attacker_pos] = round_types_normal_phy
+					[distance_modes_cur[attacker_pos]];
 			else
-				anim_round[attacker_pos] = round_types_normal_mag[distance_modes_cur[attacker_pos]];
+				anim_round[attacker_pos] = round_types_normal_mag
+					[distance_modes_cur[attacker_pos]];
 		}
 
 		/**
@@ -217,11 +232,14 @@ void ParseBattleHitToBanimCmd(void)
 		 */
 		if (hit->attributes & BATTLE_HIT_ATTR_MISS) {
 			if (!magic_attack)
-				anim_round[attacker_pos] = round_types_miss_phy[distance_modes_cur[attacker_pos]];
+				anim_round[attacker_pos] = round_types_miss_phy
+					[distance_modes_cur[attacker_pos]];
 
-			anim_round[defender_pos] = defender_round_types_dodge[distance_modes_cur[defender_pos]];
+			anim_round[defender_pos] = defender_round_types_dodge
+				[distance_modes_cur[defender_pos]];
 		} else
-			anim_round[defender_pos] = defender_round_types_hitted[distance_modes_cur[defender_pos]];
+			anim_round[defender_pos] = defender_round_types_hitted
+				[distance_modes_cur[defender_pos]];
 
 #if CHAX
 		/**
@@ -241,7 +259,8 @@ void ParseBattleHitToBanimCmd(void)
 				/**
 				 * If devil triggered, then you will lose everything :(
 				 */
-				LTRACEF("Round %d: pos=%d, DEVIL!", i, attacker_pos);
+				LTRACEF("Round %d: pos=%d, DEVIL!", i,
+					attacker_pos);
 				anim_round[attacker_pos] |= ANIM_ROUND_DEVIL;
 				continue;
 			}
@@ -254,7 +273,8 @@ void ParseBattleHitToBanimCmd(void)
 			/**
 			 * Hp drain
 			 */
-			if (exthit->hp_drain > 0 || hit->attributes & BATTLE_HIT_ATTR_HPSTEAL)
+			if (exthit->hp_drain > 0 ||
+			    hit->attributes & BATTLE_HIT_ATTR_HPSTEAL)
 				HpLutAdvance(attacker_pos, exthit->hp_drain);
 
 			if (hit->attributes & BATTLE_HIT_ATTR_POISON)
@@ -267,14 +287,16 @@ void ParseBattleHitToBanimCmd(void)
 				anim_round[attacker_pos] |= ANIM_ROUND_PIERCE;
 
 			if (hit->attributes & BATTLE_HIT_ATTR_SURESHOT)
-				anim_round[attacker_pos] |= ANIM_ROUND_SURE_SHOT;
+				anim_round[attacker_pos] |=
+					ANIM_ROUND_SURE_SHOT;
 
 			if (hit->attributes & BATTLE_HIT_ATTR_GREATSHLD)
-				anim_round[attacker_pos] |= ANIM_ROUND_GREAT_SHIELD;
+				anim_round[attacker_pos] |=
+					ANIM_ROUND_GREAT_SHIELD;
 		}
 
-		LTRACEF("Round %d: pos=%d, 0x%04X 0x%04X",
-				i, attacker_pos, anim_round[attacker_pos], anim_round[defender_pos]);
+		LTRACEF("Round %d: pos=%d, 0x%04X 0x%04X", i, attacker_pos,
+			anim_round[attacker_pos], anim_round[defender_pos]);
 	}
-	#undef HpLutAdvance
+#undef HpLutAdvance
 }

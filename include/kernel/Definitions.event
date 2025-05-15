@@ -4,4 +4,7 @@
 #include "../constants/event-cmds.h"
 #include "../constants/texts.h"
 
+#include "../CharacterDefinitions.event"
+#include "../CustomASMC.event"
+
 #endif

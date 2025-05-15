@@ -3,6 +3,7 @@
 #include "kernel-lib.h"
 #include "shield.h"
 #include "constants/skills.h"
+#include "KSDefinitions.h"
 
 /**
  * 0: generic use

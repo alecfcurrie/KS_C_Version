@@ -4,6 +4,7 @@
 #include "status-getter.h"
 #include "skill-system.h"
 #include "constants/skills.h"
+#include "KSDefinitions.h"
 
 #define LOCAL_TRACE 0
 

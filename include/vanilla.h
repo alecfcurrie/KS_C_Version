@@ -6,25 +6,29 @@
 #define CHAR_NEWLINE 0x01
 extern struct Font *gActiveFont;
 
-struct Vec1  { s8 x, y; };
-struct Vec1u { u8 x, y; };
+struct Vec1 {
+	s8 x, y;
+};
+struct Vec1u {
+	u8 x, y;
+};
 
 struct UnknownBMUSAilmentProc {
 	PROC_HEADER;
 
-	/* 29 */ u8 _pad1[0x2C-0x29];
+	/* 29 */ u8 _pad1[0x2C - 0x29];
 	/* 2C */ int unk_2C;
 	/* 30 */ int _pad2;
 	/* 34 */ int unk_34;
-	/* 38 */ u8 _pad3[0x4C-0x38];
+	/* 38 */ u8 _pad3[0x4C - 0x38];
 
 	/* 4C */ s16 unk_4C;
-	/* 4E */ u8 _pad4[0x58-0x4E];
+	/* 4E */ u8 _pad4[0x58 - 0x4E];
 
 	/* 58 */ int unk_58;
 };
 
-void ForEachUnitInRange(void(*func)(struct Unit *unit));
+void ForEachUnitInRange(void (*func)(struct Unit *unit));
 void AddUnitToTargetListIfNotAllied(struct Unit *unit);
 extern struct Struct030017A0 gDungeonState;
 void SetupBattleMOVEUNITs(void);
@@ -126,28 +130,31 @@ extern struct ProcCmd CONST_DATA ProcScr_DanceringAnim[];
 void BeginUnitHealAnim(struct Unit *unit, int hp);
 
 extern u16 sSprite_SysUpArrowA[], sSprite_SysUpArrowB[], sSprite_SysUpArrowC[];
-extern u16 sSprite_SysDownArrowA[], sSprite_SysDownArrowB[], sSprite_SysDownArrowC[];
+extern u16 sSprite_SysDownArrowA[], sSprite_SysDownArrowB[],
+	sSprite_SysDownArrowC[];
 
 void PutChapterMarkedTileIconOam(void);
 
 extern u16 gRNSeeds[3];
 
 #define SPELL_ASSOC_DATA(_item, _count, _efx, _pcmd, _stat, _facing, _color) \
-{ \
-	.item = _item, \
-	.count = _count, \
-	.efx = _efx, \
-	.pcmd_manim = _pcmd, \
-	.stat = _stat, \
-	.facing = _facing, \
-	.flash_color = _color, \
-}
+	{                                                                    \
+		.item = _item,                                               \
+		.count = _count,                                             \
+		.efx = _efx,                                                 \
+		.pcmd_manim = _pcmd,                                         \
+		.stat = _stat,                                               \
+		.facing = _facing,                                           \
+		.flash_color = _color,                                       \
+	}
 
-#define SPELL_ASSOC_DATA_WPN(_item, _efx)  \
-	SPELL_ASSOC_DATA(_item, 2, _efx, NULL, true, MA_FACING_OPPONENT, SPELL_ASSOC_MCOLOR_NORMAL)
+#define SPELL_ASSOC_DATA_WPN(_item, _efx)                                \
+	SPELL_ASSOC_DATA(_item, 2, _efx, NULL, true, MA_FACING_OPPONENT, \
+			 SPELL_ASSOC_MCOLOR_NORMAL)
 
-#define SPELL_ASSOC_DATA_WPN_MAGIC(_item, _efx, flash_color)   \
-	SPELL_ASSOC_DATA(_item, 2, _efx, NULL, true, MA_FACING_OPPONENT, flash_color)
+#define SPELL_ASSOC_DATA_WPN_MAGIC(_item, _efx, flash_color)             \
+	SPELL_ASSOC_DATA(_item, 2, _efx, NULL, true, MA_FACING_OPPONENT, \
+			 flash_color)
 
 #define SPELL_ASSOC_DATA_WPN_DEFAULT(_item) SPELL_ASSOC_DATA_WPN(_item, -1)
 #define SPELL_ASSOC_DATA_ITEM(_item) SPELL_ASSOC_DATA_WPN(_item, 0x32)
@@ -221,7 +228,7 @@ void CpPerform_Cleanup(struct CpPerformProc *proc);
 void CpPerform_PerformAction(struct CpPerformProc *proc);
 void CpPerform_MoveCameraOntoTarget(struct CpPerformProc *proc);
 
-void ForEachUnitInRange(void(*func)(struct Unit *unit));
+void ForEachUnitInRange(void (*func)(struct Unit *unit));
 void AddUnitToTargetListIfAllied(struct Unit *unit);
 void sub_8095C2C(struct ProcAtMenu *proc);
 extern struct MsgBuffer sMsgString;
@@ -247,4 +254,6 @@ extern struct ProcCmd CONST_DATA ProcScr_SetTargetStatus[];
 extern struct ProcCmd CONST_DATA ProcScr_ExecNightmareStaff[];
 
 u16 GetLoadUnitsAmount(const struct UnitDefinition *unitDefinition);
-struct UnitDefinition *GetUnitDefinitionFormEventScr(struct UnitDefinition *source, short count, u8 arg2, s8 arg3, s8 arg4);
+struct UnitDefinition *
+GetUnitDefinitionFormEventScr(struct UnitDefinition *source, short count,
+			      u8 arg2, s8 arg3, s8 arg4);
